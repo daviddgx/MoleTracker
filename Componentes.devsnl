@@ -1,0 +1,36 @@
+Componentes formulario de NuevoGuia
+name="form-GUIASAP"
+name="form-GUIASAP"
+name="form-Piloto"
+name="form-DPIPiloto"
+name="form-PlacaDelCamion"
+name="form-TipoCamion"
+name="form-NoRampa"
+name="form-Destino"
+name="form-FechaCarga"
+name="form-FechaEntrega"
+name="form-PesoBruto"
+name="form-RFID"
+
+$GuiaSAP = $_POST['form-GUIASAP'];
+$Piloto = $_POST['form-Piloto'];
+$DPIPiloto = $_POST['form-DPIPiloto'];
+$PlacaCamion = $_POST['form-PlacaDelCamion'];
+$TipoCamion = $_POST['form-TipoCamion'];
+$Rampa = $_POST['form-NoRampa'];
+$Destino = $_POST['form-Destino'];
+$FechaCarga = $_POST['form-FechaCarga'];
+$FechaEntrega = $_POST['form-FechaEntrega'];
+$PesoBruto = $_POST['form-PesoBruto'];
+$RFID = $_POST['form-RFID'];
+
+
+
+
+Error: INSERT INTO `traker_mole`.`trck_mle_guias` (`GuiaSAP`, `Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('REF-GUATEREP','Marcelo Chetos','21918231921921','WER342','5 Toneladas de Guias','Area No. 4','Cidudad Cayala','15-10-2019','18-10-2019','1234','123456','Activa')
+Field 'ID_GUIA' doesn't have a default value 
+
+INSERT INTO `traker_mole`.`trck_mle_guias` (`GuiaSAP`, `Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1');
+
+
+Admin_Unidades.php
