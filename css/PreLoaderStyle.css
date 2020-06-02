@@ -33,6 +33,11 @@ body {
 
 }
 
+
+.hide {
+    display: none !important;
+  }
+
 .loader1,
 .loader2 {
     position: absolute;

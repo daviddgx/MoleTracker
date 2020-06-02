@@ -11,7 +11,7 @@ if (!empty($_POST['Entrar'])) {
     // Creamos la conexion
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
-        die("Error en la conexion: " . $conn->connect_error);
+        die('Error en la conexion: ' . $conn->connect_error);
     } else {
         // Obtencion de datos
         $LClave = md5($LClave);
@@ -24,22 +24,23 @@ if (!empty($_POST['Entrar'])) {
             if ($result->num_rows > 0) {
                 //Salida de datos del query
                 while ($row = $result->fetch_assoc()) {
-                    if ($row["T_Usuario"] === 'Administrador de Guias') {
-                        $_SESSION['Usuario'] = $row["Usuario"];
+                    if ($row['T_Usuario'] === 'Administrador de Guias') {
+                        $_SESSION['Usuario'] = $row['Usuario'];
                         //echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"]."Usuario: ".$row["Usuario"];
-                        header("Location: DashboardAdministradorGuias.php");
-                    } else if ($row["T_Usuario"] === 'Area Generica ') {
-                        $_SESSION['Usuario'] = $row["Usuario"];
+                        header('Location: DashboardAdministradorGuias.php');
+                    } elseif ($row['T_Usuario'] === 'Area Generica ') {
+                        $_SESSION['Usuario'] = $row['Usuario'];
                         // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header("Location: DashboardAreaGenerica.php");
-                    } else if ($row["T_Usuario"] === 'Traker') {
-                        $_SESSION['Usuario'] = $row["Usuario"];
+                        header('Location: DashboardAreaGenerica.php');
+                    } elseif ($row['T_Usuario'] === 'Traker') {
+                        $_SESSION['Usuario'] = $row['Usuario'];
                         // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header("Location: DashboardTraker.php");
+                        header('Location: DashboardTraker.php');
                     }
                 }
             } else {
-                $error = '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
+                $error =
+                    '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
                 // $row = $result->fetch_assoc();
             }
         } catch (Exception $ex) {
@@ -49,8 +50,8 @@ if (!empty($_POST['Entrar'])) {
     }
     // Fin de la conexion
 }
-// FinFuncionLogIN
 
+// FinFuncionLogIN
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -61,17 +62,16 @@ if (!empty($_POST['Entrar'])) {
     <meta name="viewport" content="width=divice-whidth, initial-sace=1, shrink-to-fit=no">
     <title>Mole Tracker</title>
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/materialize.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link rel="stylesheet" href="FountAuson/css/font-awesome.css">
-    <link href="https://fonts.googleapis.com/css?family-Ralweay:100,300,400,500">
-    <link rel="stylesheet" href="css/PreLoaderStyle.css">
-    <link href="css/animate.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" href="imagenes/LOGOTKM2.PNG">
-    <link rel="stylesheet" href="css/custom.css">
-    <link href="css/admin.css" rel="stylesheet" type="text/css" />
-    <!-- Estilos en Css -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
+        <link rel="stylesheet" href="FountAuson/css/font-awesome.css">
+        <link href="https://fonts.googleapis.com/css?family-Ralweay:100,300,400,500">
+        <link rel="stylesheet" href="css/custom.css">
+        <link rel="stylesheet" href="css/PreLoaderStyle.css">
+        <link href="css/animate.css" rel="stylesheet" type="text/css" />
+        <link rel="icon" href="imagenes/LOGOTKM2.PNG">
+        <link href="css/admin.css" rel="stylesheet" type="text/css" />
+        <!-- Estilos en Css -->
     <style>
         body {
             background: url("imagenes/Mole Tracker.png");
@@ -109,25 +109,29 @@ if (!empty($_POST['Entrar'])) {
 
     <!-- Fin Contenido  -->
     <div class="hide" id="Contenido">
-        <!--menu de navegacion-->
-        <nav class="navbar navbar-dark bg-dark sticky-top" style="align-items: center;">
-            <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+              <!--menu de navegacion-->
+              <nav class="navbar navbar-inverse bg-inverse navbar-toggleable-sm sticky-top formulario">
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>-->
-            <a class="navbar-brand" href="index.php">
-                <img src="imagenes/LOGOTKM2.PNG" width="auto" height="30" class="d-inline-block align-top" alt="Logo GDX">
-                Mole Tracker
+            </button>
+            <a class="navbar-brand" href="index.html">
+             <img src="imagenes/LOGOTKM2.PNG" width="30" height="30" class="d-inline-block align-top" alt="Logo GDX">
+             Mole Tracker
             </a>
-            <!-- <div class="collapse navbar-collapse" id="navbarTogglerDemo01 ">
-                <div class="navbar-nav mr-auto ml-auto text-center ">
-                </div>
-                <div class="d-flex flex-row justify-content-center">
-                    <a href="https://facebook.com/"><span class="badge badge-primary">Facebook</span></a>
-                    <a href="https://youtube.com/"><span class="badge badge-danger">Youtube</span></a>
-                </div>
-            </div> -->
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo01 ">
+            <div class="navbar-nav mr-auto ml-auto text-center ">
+
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+                <a  href="https://sertero.com/"><span class="badge badge-primary">sertero</span></a>
+                <a  href="https://qbit-labs.com/"><span class="badge badge-danger">qbit-labs</span></a>
+
+            </div>
+            </div>
+
         </nav>
         <!--Fin Menu de Navegacion-->
+
         <!--Inicia Formulario Login-->
         <div class="my-content formulario">
             <div class="container">
@@ -162,7 +166,8 @@ if (!empty($_POST['Entrar'])) {
                                 <div class="form-group">
                                     <input type="password" name="ClaveLog" placeholder="Contaseña..." class="form-control" id="form-password">
                                 </div>
-                                <div> <?php echo $error . $mensajeExito; ?></div>
+                                <div> <?php echo $error .
+                                    $mensajeExito; ?></div>
                                 <div data-effect="flip" class="effect-button"><input type="submit" name="Entrar" value="Entrar" class="effect-button"></input></div>
                                 <!--<div  data-effect="flip" class="effect-button"><a class="nav-item nav-link formulario" href="DashboardAdministrador.php">Entrar </a></div>-->
                                 <!-- <input  type="submit" name="Entrar" class="mybtn "></input> -->
@@ -216,7 +221,7 @@ if (!empty($_POST['Entrar'])) {
     <!-- Fin Script de Loader -->
 
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonimus"></script>
-    <!-- <script src="https://cdnj.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUHKKDx6Qin1DkWx51bBrb" crossorigin="anonimus"></script> -->
+    <script src="https://cdnj.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUHKKDx6Qin1DkWx51bBrb" crossorigin="anonimus"></script>
     <script src="js/bootstrap.js"></script>
     <script src="js/jquery-2.1.0.js"></script>
     <script src="js/common-script.js"></script>
