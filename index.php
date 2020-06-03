@@ -63,8 +63,8 @@ if (!empty($_POST['Entrar'])) {
     <title>Mole Tracker</title>
     <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
-        <link rel="stylesheet" href="css/bootstrap.css">
         <link rel="stylesheet" href="FountAuson/css/font-awesome.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family-Ralweay:100,300,400,500">
         <link rel="stylesheet" href="css/custom.css">
         <link rel="stylesheet" href="css/PreLoaderStyle.css">
@@ -203,6 +203,33 @@ if (!empty($_POST['Entrar'])) {
         <!--       Finaliza Footer-->
     </div>
 
+
+    <!--       Inicia Footer-->
+    <footer class="container-fluid bg-inverse formulario">
+            <div class="row rext-white py-4 text-white">
+                <div class="col-md-3">
+                    <img src="imagenes/Logo.svg" alt="" width="50px" height="auto" class="float-left mr-3">
+                    <h4 class="lead"Sertero!></h4>
+                    <footer class="blockquote-footer">Sertero 2017 <cite title="Source Title" ><br>david.orantes@sertero.com<br > Web Master</cite></footer>
+                </div>
+                    <div class="col-md-3">
+                        <h4 class="lead">Contactos</h4>
+                        <p>Telefono: 1234-56789<br>Correo: info@sertero.com<br>Web: sertero.com</p>
+                    </div>
+
+                    <div class="col-md-3">
+                        <h4 class="lead">Horarios</h4>
+                        <p>Lunes - Viernes 06:00 Am - 08:00 Pm<br>Sabado - Domingo 08:00 Am - 10:00 PM</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h4 class="lead ">Siguenos</h4>
+                        <a class="mybtn-social" href="https://facebook.com/"><span class="badge badge-primary">Facebook</span></a>
+                        <a class="mybtn-social" href="https://youtube.com/"><span class="badge badge-danger">Youtube</span></a>
+
+                    </div>
+            </div>
+        </footer>
+<!--       Finaliza Footer-->
 
     <!-- Script para Loader  -->
     <script src="js/materialize.js"></script>
