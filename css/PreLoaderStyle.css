@@ -38,6 +38,12 @@ body {
     display: none !important;
   }
 
+.centrado{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
 .loader1,
 .loader2 {
     position: absolute;
