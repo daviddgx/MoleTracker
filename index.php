@@ -1,6 +1,5 @@
 <?php
 session_start();
-
 include 'LQS_EUQ/Auth.php';
 
 // FuncionLogin
@@ -9,45 +8,48 @@ if (!empty($_POST['Entrar'])) {
     $LUser = $_POST['UserLog'];
     $LClave = $_POST['ClaveLog'];
     // Creamos la conexion
-    $conn = new mysqli($servername, $username, $password, $dbname);
-    if ($conn->connect_error) {
-        die('Error en la conexion: ' . $conn->connect_error);
-    } else {
-        // Obtencion de datos
-        $LClave = md5($LClave);
-        //echo $LUser;
-        //echo $LClave;
-        $sql = "SELECT RFID,Pass,T_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'";
-        $result = $conn->query($sql);
-        // Fin Obtencion de datos
-        try {
-            if ($result->num_rows > 0) {
-                //Salida de datos del query
-                while ($row = $result->fetch_assoc()) {
-                    if ($row['T_Usuario'] === 'Administrador de Guias') {
-                        $_SESSION['Usuario'] = $row['Usuario'];
-                        //echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"]."Usuario: ".$row["Usuario"];
-                        header('Location: DashboardAdministradorGuias.php');
-                    } elseif ($row['T_Usuario'] === 'Area Generica ') {
-                        $_SESSION['Usuario'] = $row['Usuario'];
-                        // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header('Location: DashboardAreaGenerica.php');
-                    } elseif ($row['T_Usuario'] === 'Traker') {
-                        $_SESSION['Usuario'] = $row['Usuario'];
-                        // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header('Location: DashboardTraker.php');
+
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        if ($conn->connect_error) {
+            die('Error en la conexion: ' . $conn->connect_error);
+        } else {
+            // Obtencion de datos
+            $LClave = md5($LClave);
+            //echo $LUser;
+            //echo $LClave;
+            $sql = "SELECT RFID,Pass,T_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'  or Usuario ='$LUser'  AND Pass = '$LClave'";
+            $result = $conn->query($sql);
+            // Fin Obtencion de datos
+            try {
+                if ($result->num_rows > 0) {
+                    //Salida de datos del query
+                    while ($row = $result->fetch_assoc()) {
+                        if ($row['T_Usuario'] === 'Administrador de Guias') {
+                            $_SESSION['Usuario'] = $row['Usuario'];
+                            //echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"]."Usuario: ".$row["Usuario"];
+                            header('Location: DashboardAdministradorGuias.php');
+                        } elseif ($row['T_Usuario'] === 'Area Generica ') {
+                            $_SESSION['Usuario'] = $row['Usuario'];
+                            // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
+                            header('Location: DashboardAreaGenerica.php');
+                        } elseif ($row['T_Usuario'] === 'Traker') {
+                            $_SESSION['Usuario'] = $row['Usuario'];
+                            // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
+                            header('Location: DashboardTraker.php');
+                        }
                     }
+                } else {
+                    $error =
+                        '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
+                    // $row = $result->fetch_assoc();
                 }
-            } else {
-                $error =
-                    '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
-                // $row = $result->fetch_assoc();
+            } catch (Exception $ex) {
+                echo $ex;
             }
-        } catch (Exception $ex) {
+            //comprovacion de dadtos
+            //fin comprovacion de datos
         }
-        //comprovacion de dadtos
-        //fin comprovacion de datos
-    }
+
     // Fin de la conexion
 }
 
@@ -69,7 +71,7 @@ if (!empty($_POST['Entrar'])) {
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/PreLoaderStyle.css">
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="100px" height="auto">
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="80px" height="auto">
     <link href="css/admin.css" rel="stylesheet" type="text/css" />
     <!-- Estilos en Css -->
     <style>
@@ -137,9 +139,9 @@ if (!empty($_POST['Entrar'])) {
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 centerall myform-all centrado">
-                        <h1><strong>Control de Logistica de </strong> Distribución</h1>
+                        <h1><strong>Sertero </strong> CLD</h1>
                         <div class="mydescription ">
-                            <p class="">Formulario de Ingreso al sistema</p>
+                            <p class="">Control Logistico de Distribución</p>
                         </div>
                     </div>
                 </div>
