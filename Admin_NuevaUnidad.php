@@ -66,7 +66,7 @@ if (!empty($_POST['Programar'])) {
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
 
     <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/admin.css" rel="stylesheet" type="text/css" />
     <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">

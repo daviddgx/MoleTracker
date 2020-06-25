@@ -1,5 +1,7 @@
 <?php
 session_start();
+include 'LQS_EUQ/Auth.php';
+$fecha = date("d").'-'.date("m").'-'.date("Y");
 
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
@@ -22,7 +24,7 @@ if ($_SESSION['Usuario'] == '') {
     <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
     <link href="plugins/morris/morris.css" rel="stylesheet" />
-    <link rel="icon" href="imagenes/LOGOTKM.PNG">
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG">
 
     <style>
         body {
@@ -91,6 +93,7 @@ if ($_SESSION['Usuario'] == '') {
                     <div class="user_admin dropdown">
                         <?php
                         echo '<div class="user_admin dropdown"><span class="user_adminname">Usuario: ' . $_SESSION['Usuario'] . '</span></div>';
+                        echo '<div class="user_admin dropdown"><span class="user_adminname">Fecha: ' . $fecha . '</span></div>';
                         ?>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -189,7 +192,6 @@ if ($_SESSION['Usuario'] == '') {
                                         <div class="info green_symbols"><i class="fa fa-anchor icon"></i></div>
                                         <span>Guias Despachadas </span>
                                         <?php
-                                        include 'Auth.php';
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*) FROM traker_mole.trck_mle_areas;";
                                         $result = $conn->query($consulta);
@@ -219,7 +221,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <!-- //Consulta con los ciudadanos regustrados y devolver valor -->
 
                                         <?php
-                                        include 'Auth.php';
+                                        
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*) FROM traker_mole.trck_mle_vehiculos;";
                                         $result = $conn->query($consulta);
@@ -248,7 +250,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <span>Guias Entregadas</span>
                                         <!-- Consulta de Votos y muestra el valor -->
                                         <?php
-                                        include 'Auth.php';
+                                        
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*)  FROM traker_mole.trck_mle_guias where Estatus = 'Entregada';";
                                         $result = $conn->query($consulta);
@@ -277,7 +279,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <span> Guias en Transito </span>
                                         <!-- //conteo de candidoas totales para mostra -->
                                         <?php
-                                        include 'Auth.php';
+                                        
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*) FROM traker_mole.trck_mle_guias where Estatus = 'En Proceso';";
                                         $result = $conn->query($consulta);
@@ -335,7 +337,7 @@ if ($_SESSION['Usuario'] == '') {
                 </div>
                 <!-- FIN Conenido -->
 
-                
+
                 <script src="js/jquery-2.1.0.js"></script>
                 <script src="js/bootstrap.min.js"></script>
                 <script src="js/common-script.js"></script>
