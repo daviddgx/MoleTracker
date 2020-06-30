@@ -3,52 +3,74 @@ session_start();
 include 'LQS_EUQ/Auth.php';
 
 // FuncionLogin
-sleep(3);
+
+
+
 if (!empty($_POST['Entrar'])) {
     $LUser = $_POST['UserLog'];
     $LClave = $_POST['ClaveLog'];
     // Creamos la conexion
 
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        if ($conn->connect_error) {
-            die('Error en la conexion: ' . $conn->connect_error);
-        } else {
-            // Obtencion de datos
-            $LClave = md5($LClave);
-            //echo $LUser;
-            //echo $LClave;
-            $sql = "SELECT RFID,Pass,T_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'  or Usuario ='$LUser'  AND Pass = '$LClave'";
-            $result = $conn->query($sql);
-            // Fin Obtencion de datos
-            try {
-                if ($result->num_rows > 0) {
-                    //Salida de datos del query
-                    while ($row = $result->fetch_assoc()) {
-                        if ($row['T_Usuario'] === 'Administrador de Guias') {
+    $conn = new mysqli($servername, $username, $password, $dbname);
+    if ($conn->connect_error) {
+        die('Error en la conexion: ' . $conn->connect_error);
+    } else {
+        // Obtencion de datos
+        $LClave = md5($LClave);
+        //echo $LUser;
+        //echo $LClave;
+        $sql = "SELECT RFID,Pass,Roll_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'  or Usuario ='$LUser'  AND Pass = '$LClave'";
+        $result = $conn->query($sql);
+        // Fin Obtencion de datos
+        try {
+
+
+
+            if ($result->num_rows > 0) {
+                //Salida de datos del query
+
+                // Cambiamos los IF anidados  por Switch/Case para mejorar el rendimiento
+
+                while ($row = $result->fetch_assoc()) {
+
+                    switch ($row['Roll_Usuario']) {
+                        case '1':
                             $_SESSION['Usuario'] = $row['Usuario'];
-                            //echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"]."Usuario: ".$row["Usuario"];
+                            header('Location: DashboardAdministradorSistema.php');
+                            break;
+
+                        case '2':
+                            $_SESSION['Usuario'] = $row['Usuario'];
                             header('Location: DashboardAdministradorGuias.php');
-                        } elseif ($row['T_Usuario'] === 'Area Generica ') {
+                            break;
+
+                        case '3':
                             $_SESSION['Usuario'] = $row['Usuario'];
-                            // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                            header('Location: DashboardAreaGenerica.php');
-                        } elseif ($row['T_Usuario'] === 'Traker') {
+                            header('Location: DashboardSupervisorAreas.php');
+                            break;
+
+                        case '4':
                             $_SESSION['Usuario'] = $row['Usuario'];
-                            // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
                             header('Location: DashboardTraker.php');
-                        }
+                            break;
+
+                        case '5':
+                            $_SESSION['Usuario'] = $row['Usuario'];
+                            header('Location: Dashboard.php');
+                            break;
                     }
-                } else {
-                    $error =
-                        '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
-                    // $row = $result->fetch_assoc();
                 }
-            } catch (Exception $ex) {
-                echo $ex;
+            } else {
+                $error =
+                    '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
+                // $row = $result->fetch_assoc();
             }
-            //comprovacion de dadtos
-            //fin comprovacion de datos
+        } catch (Exception $ex) {
+            echo $ex;
         }
+        //comprovacion de dadtos
+        //fin comprovacion de datos
+    }
 
     // Fin de la conexion
 }
@@ -73,6 +95,7 @@ if (!empty($_POST['Entrar'])) {
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="80px" height="auto">
     <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="../css/AnimatedBk.css" />
     <!-- Estilos en Css -->
     <style>
         body {
@@ -180,35 +203,36 @@ if (!empty($_POST['Entrar'])) {
                 </div>
             </div>
         </div>
+
+
+
+        <!--       Inicia Footer-->
+        <footer class="container-fluid bg-inverse formulario">
+            <div class="row rext-white py-4 text-white">
+                <div class="col-md-3">
+                    <img src="imagenes/LOGOTKM2.PNG" alt="" width="50px" height="auto" class="float-left mr-3">
+                    <h4 class="lead" Sertero!></h4>
+                    <footer class="blockquote-footer">Sertero 2020 <cite title="Source Title"><br>david.orantes@sertero.com<br> Web Master</cite></footer>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="lead">Contactos</h4>
+                    <p>Telefono: 1234-56789<br>Correo: info@sertero.com<br>Web: sertero.com</p>
+                </div>
+
+                <div class="col-md-3">
+                    <h4 class="lead">Horarios</h4>
+                    <p>Lunes - Viernes 06:00 Am - 08:00 Pm<br>Sabado - Domingo 08:00 Am - 10:00 PM</p>
+                </div>
+                <div class="col-md-3">
+                    <h4 class="lead ">Siguenos</h4>
+                    <a class="mybtn-social" href="https://facebook.com/"><span class="badge badge-primary">Facebook</span></a>
+                    <a class="mybtn-social" href="https://youtube.com/"><span class="badge badge-danger">Youtube</span></a>
+
+                </div>
+            </div>
+        </footer>
+        <!--       Finaliza Footer-->
     </div>
-
-
-    <!--       Inicia Footer-->
-    <footer class="container-fluid bg-inverse formulario">
-        <div class="row rext-white py-4 text-white">
-            <div class="col-md-3">
-                <img src="imagenes/LOGOTKM2.PNG" alt="" width="50px" height="auto" class="float-left mr-3">
-                <h4 class="lead" Sertero!></h4>
-                <footer class="blockquote-footer">Sertero 2020 <cite title="Source Title"><br>david.orantes@sertero.com<br> Web Master</cite></footer>
-            </div>
-            <div class="col-md-3">
-                <h4 class="lead">Contactos</h4>
-                <p>Telefono: 1234-56789<br>Correo: info@sertero.com<br>Web: sertero.com</p>
-            </div>
-
-            <div class="col-md-3">
-                <h4 class="lead">Horarios</h4>
-                <p>Lunes - Viernes 06:00 Am - 08:00 Pm<br>Sabado - Domingo 08:00 Am - 10:00 PM</p>
-            </div>
-            <div class="col-md-3">
-                <h4 class="lead ">Siguenos</h4>
-                <a class="mybtn-social" href="https://facebook.com/"><span class="badge badge-primary">Facebook</span></a>
-                <a class="mybtn-social" href="https://youtube.com/"><span class="badge badge-danger">Youtube</span></a>
-
-            </div>
-        </div>
-    </footer>
-    <!--       Finaliza Footer-->
 
     <!-- Script para Loader  -->
     <script src="js/materialize.js"></script>

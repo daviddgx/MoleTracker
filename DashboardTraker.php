@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'LQS_EUQ/Auth.php';
-$fecha = date("d").'-'.date("m").'-'.date("Y");
+$fecha = date("d") . '-' . date("m") . '-' . date("Y");
 
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
@@ -25,6 +25,18 @@ if ($_SESSION['Usuario'] == '') {
     <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
     <link href="plugins/morris/morris.css" rel="stylesheet" />
     <link rel="icon" href="imagenes/LOGOTKM2.PNG">
+    <!-- MDBootstrap Datatables  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#example').DataTable();
+        } );
+    </script>
 
     <style>
         body {
@@ -221,7 +233,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <!-- //Consulta con los ciudadanos regustrados y devolver valor -->
 
                                         <?php
-                                        
+
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*) FROM traker_mole.trck_mle_vehiculos;";
                                         $result = $conn->query($consulta);
@@ -250,7 +262,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <span>Guias Entregadas</span>
                                         <!-- Consulta de Votos y muestra el valor -->
                                         <?php
-                                        
+
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*)  FROM traker_mole.trck_mle_guias where Estatus = 'Entregada';";
                                         $result = $conn->query($consulta);
@@ -279,7 +291,7 @@ if ($_SESSION['Usuario'] == '') {
                                         <span> Guias en Transito </span>
                                         <!-- //conteo de candidoas totales para mostra -->
                                         <?php
-                                        
+
                                         $conn = new mysqli($servername, $username, $password, $dbname);
                                         $consulta = "SELECT count(*) FROM traker_mole.trck_mle_guias where Estatus = 'En Proceso';";
                                         $result = $conn->query($consulta);

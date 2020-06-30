@@ -1,0 +1,42 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+
+.mydiv {
+    background: linear-gradient(53deg, #247cd2, #d089ba, #a079e3, #85a1f7, #62e484, #51ca9b, #5f6cd9, #7c90fb, #82e1bc, #94f079, #e3af45, #ea7f36);
+    background-size: 2400% 2400%;
+    display: flex;
+    align-items: center;
+    font-size: 45px;
+    font-weight: bold;
+    -webkit-animation: BK_GenericApp 59s ease infinite;
+    -moz-animation: BK_GenericApp 59s ease infinite;
+    -o-animation: BK_GenericApp 59s ease infinite;
+    animation: BK_GenericApp 59s ease infinite;
+}
+
+@-webkit-keyframes BK_GenericApp {
+    0%{background-position:0% 77%}
+    50%{background-position:100% 24%}
+    100%{background-position:0% 77%}
+}
+@-moz-keyframes BK_GenericApp {
+    0%{background-position:0% 77%}
+    50%{background-position:100% 24%}
+    100%{background-position:0% 77%}
+}
+@-o-keyframes BK_GenericApp {
+    0%{background-position:0% 77%}
+    50%{background-position:100% 24%}
+    100%{background-position:0% 77%}
+}
+@keyframes BK_GenericApp {
+    0%{background-position:0% 77%}
+    50%{background-position:100% 24%}
+    100%{background-position:0% 77%}
+}

@@ -197,3 +197,12 @@ button.mybtn:focus {
     font-size: 25px;
     Color: #ffffff
 }
+
+.my-fixed-item {
+    position: fixed;
+    min-height: 120px;
+    width: 252px;
+    text-align: center;
+    word-wrap: break-word;
+    background-color: aquamarine;
+}
