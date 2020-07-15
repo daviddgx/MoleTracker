@@ -13,11 +13,11 @@ if ($_SESSION['Usuario'] == '') {
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Mole Tracker / Tracker </title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
     <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
@@ -32,11 +32,9 @@ if ($_SESSION['Usuario'] == '') {
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-    </script>
+
+
+
 
     <style>
         body {
@@ -60,7 +58,7 @@ if ($_SESSION['Usuario'] == '') {
 </head>
 
 <body class="dark_theme  fixed_header left_nav_fixed light_theme green_thm">
-    <div class="wrapper">
+
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -120,7 +118,8 @@ if ($_SESSION['Usuario'] == '') {
             <!--\\\\\\\ header top bar end \\\\\\-->
         </div>
         <!--\\\\\\\ header end \\\\\\-->
-        <div class="inner">
+
+
             <!--\\\\\\\ inner start \\\\\\-->
             <div class="left_nav">
                 <!--\\\\\\\left_nav start \\\\\\-->
@@ -138,7 +137,7 @@ if ($_SESSION['Usuario'] == '') {
                                     <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerTiempos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tiempos</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
                                 </li>
                                 <li>
                                     <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
@@ -163,8 +162,8 @@ if ($_SESSION['Usuario'] == '') {
                     </div>
                     <div class="pull-right">
                         <ol class="breadcrumb">
-                            <li><a href="http://www.google.com">Sertero</a></li>
-                            <li><a href="http://www.google.com">AplicacionesWeb</a></li>
+                            <li><a>Sertero</a></li>
+                            <li><a>AplicacionesWeb</a></li>
                             <li class="active">Mole Tracker</li>
                         </ol>
                     </div>

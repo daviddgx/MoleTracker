@@ -9,8 +9,9 @@ if ($_SESSION['Usuario'] == '') {
 }
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -19,10 +20,6 @@ if ($_SESSION['Usuario'] == '') {
     <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
-    <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
-    <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
-    <link href="plugins/morris/morris.css" rel="stylesheet" />
     <link rel="stylesheet" href="css/EstiloTablas.css">
     <link rel="stylesheet" href="css/custom2.css">
     <link rel="icon" href="imagenes/LOGOTKM.PNG">
@@ -30,35 +27,30 @@ if ($_SESSION['Usuario'] == '') {
     <!-- MDBootstrap Datatables  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
-
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#example').DataTable();
-        } );
-    </script>
+
 
 
 
     <style>
-    body {
-        background: url("imagenes/Registro.jpg") no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        -o-background-size: cover;
-        background-size: cover;
-        background-attachment: fixed;
-        overflow: scroll;
-    }
+        body {
+            background: url("imagenes/Registro.jpg") no-repeat center center fixed;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            background-size: cover;
+            background-attachment: fixed;
+            overflow: scroll;
+        }
 
-    html,
-    body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-    }
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
     </style>
 
 </head>
@@ -71,8 +63,7 @@ if ($_SESSION['Usuario'] == '') {
             <div class="brand">
                 <!--\\\\\\\ brand Start \\\\\\-->
                 <div class="logo" style="display:block">
-                    <img src="imagenes/LOGOTKM2.PNG" width="auto" height="30" class="d-inline-block align-top"
-                        alt="Logo GDX">
+                    <img src="imagenes/LOGOTKM2.PNG" width="auto" height="30" class="d-inline-block align-top" alt="Logo GDX">
                     <span class="theme_color">Mole</span> Tracker</div>
             </div>
             <!--\\\\\\\ brand end \\\\\\-->
@@ -84,8 +75,7 @@ if ($_SESSION['Usuario'] == '') {
                         <ul>
                             <li> <a href="javascript:ReloadPage();"><i class="fa fa-repeat"></i></a> </li>
                             <li class="dropdown">
-                                <a data-toggle="dropdown" href="javascript:Salir();"> <i class="fa fa-sign-out-alt"></i>
-                                </a>
+                                <a data-toggle="dropdown" href="javascript:Salir();"> <i class="fa fa-sign-out-alt"></i> </a>
                                 <ul class="drop_down_task dropdown-menu" style="margin-top:50px">
                                     <div class="top_left_pointer"></div>
                                     <li>
@@ -136,13 +126,10 @@ if ($_SESSION['Usuario'] == '') {
                 </div>
                 <div class="left_nav_slidebar">
                     <ul>
-                        <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i
-                                    class="fa fa-home"></i> TRACKER <span class="left_nav_pointer"></span> <span
-                                    class="plus"><i class="fa fa-plus"></i></span> </a>
+                        <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> TRACKER <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul class="opened" style="display:block">
                                 <li>
-                                    <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i>
-                                        <b>DashBoard</b> </a>
+                                    <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>DashBoard</b> </a>
                                 </li>
                                 <li>
                                     <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i
@@ -150,16 +137,13 @@ if ($_SESSION['Usuario'] == '') {
                                             Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerTiempos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-                                        <b>Tiempos</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-                                        <b>Guias Retrasadas</b> </a>
+                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-                                        <b>Guia Activa</b> </a>
+                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guia Activa</b> </a>
                                 </li>
                             </ul>
                         </li>
@@ -171,7 +155,7 @@ if ($_SESSION['Usuario'] == '') {
             <div class="contentpanel">
                 <!--\\\\\\\ contentpanel start\\\\\\-->
                 <!-- Inicia la barra de Tutulo en right -->
-                <div class="pull-left breadcrumb_admin clear_both ">
+                <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
                         <h1>Guias Entregadas...</h1>
                         <h2 class="">Panel de Configuración...</h2>
@@ -216,7 +200,7 @@ if ($_SESSION['Usuario'] == '') {
                             <br>
                             <h1 class="Titulos">Guias Entregadas</h1>
                             <form role="form" action="" method="post" class="">
-                                <table id="TblGuias" class="table table-striped  table-sm" cellspacing="0" width="100%">
+                                <table id="example" class="table table-striped  table-sm" cellspacing="0" width="100%">
                                     <tr>
                                         <th>No. Guia</th>
                                         <th>GuiaSAP</th>
@@ -271,6 +255,7 @@ if ($_SESSION['Usuario'] == '') {
                                         ?>
                                     </tr>
                                 </table>
+
                             </form>
                         </div>
                     </div>
@@ -293,6 +278,15 @@ if ($_SESSION['Usuario'] == '') {
                 carga();
             })
             </script>
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable( {
+                    "processing": true
+
+
+                } );
+            } );
+        </script>
 
 </body>
 

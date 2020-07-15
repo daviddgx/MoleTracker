@@ -19,18 +19,24 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Mole Tracker / Tracker </title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
     <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
-    <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-    <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
-    <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
-    <link href="plugins/morris/morris.css" rel="stylesheet" />
+    <link rel="stylesheet" href="css/EstiloTablas.css">
+    <link rel="stylesheet" href="css/custom2.css">
     <link rel="icon" href="imagenes/LOGOTKM.PNG">
+    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- MDBootstrap Datatables  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
 
     <style>
         body {
@@ -48,7 +54,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
 </head>
 
 <body class="dark_theme  fixed_header left_nav_fixed light_theme green_thm">
-    <div class="wrapper">
+
         <!--\\\\\\\ wrapper Start \\\\\\-->
         <div class="header_bar">
             <!--\\\\\\\ header Start \\\\\\-->
@@ -108,7 +114,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
 
         </div>
         <!--\\\\\\\ header end \\\\\\-->
-        <div class="inner">
+
             <!--\\\\\\\ inner start \\\\\\-->
             <div class="left_nav">
                 <!--\\\\\\\left_nav start \\\\\\-->
@@ -126,7 +132,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                     <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guias Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerTiempos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Tiempos</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
                                 </li>
                                 <li>
                                     <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guias Retrasadas</b> </a>
@@ -189,7 +195,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                             <br></br>
                             <h1 class="Titulos">Guias Retrasadas</h1>
                             <form role="form" action="" method="post" class="">
-                                <table>
+                                <table id="example" class="table table-striped table-bordered" style="width:100%">
                                     <tr class="table-danger">
                                         <th>No. Guia</th>
                                         <th>Piloto</th>
@@ -235,7 +241,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                             echo $lista_Guias['Estatus'];
                                             echo "</td>";
                                             echo "</tr>";
-                                            $lista_Guias = $ejecutar_sentencia->fetch_array();
+                                            $lista_Guias = $ejecutar_sentencia->fetch(PDO::FETCH_ASSOC);
                                         }
                                         ?>
                                     </tr>
@@ -266,35 +272,21 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
             </div>
             <!-- Fin de Contenido -->
 
-            <script src="js/jquery-2.1.0.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/common-script.js"></script>
-            <script src="js/jquery.slimscroll.min.js"></script>
-            <script src="js/jquery.sparkline.js"></script>
-            <script src="js/sparkline-chart.js"></script>
-            <script src="js/graph.js"></script>
-            <script src="js/edit-graph.js"></script>
-            <script src="plugins/kalendar/kalendar.js" type="text/javascript"></script>
-            <script src="plugins/kalendar/edit-kalendar.js" type="text/javascript"></script>
-            <script src="plugins/sparkline/jquery.sparkline.js" type="text/javascript"></script>
-            <script src="plugins/sparkline/jquery.customSelect.min.js"></script>
-            <script src="plugins/sparkline/sparkline-chart.js"></script>
-            <script src="plugins/sparkline/easy-pie-chart.js"></script>
-            <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
-            <script src="plugins/morris/raphael-min.js" type="text/javascript"></script>
-            <script src="plugins/morris/morris-script.js"></script>
-            <script src="plugins/demo-slider/demo-slider.js"></script>
-            <script src="plugins/knob/jquery.knob.min.js"></script>
-            <script src="js/jPushMenu.js"></script>
-            <script src="js/side-chats.js"></script>
-            <script src="js/jquery.slimscroll.min.js"></script>
-            <script src="plugins/scroll/jquery.nanoscroller.js"></script>
+
             <script src="js/FuncionesInternas.js"></script>
             <script>
                 window.addEventListener('load', () => {
                     carga();
                 })
             </script>
+
+        <script>
+            $(document).ready(function() {
+                $('#example').DataTable( {
+                    "processing": true
+                } );
+            } );
+        </script>
 
 </body>
 

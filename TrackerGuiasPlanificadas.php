@@ -1,17 +1,12 @@
 <?php
-
-
 session_start();
+include_once 'LQS_EUQ/GuiasTraker.php';
+$fecha = date("d") . '-' . date("m") . '-' . date("Y");
 
 if ($_SESSION['Usuario'] == '') {
-  header('Location: 505.html');
+    header('Location: 505.html');
 } else {
 }
-
-sleep(2);
-include 'Auth.php';
-include 'LQS_EUQ/GuiasTraker.php';
-
 
 ?>
 
@@ -129,7 +124,7 @@ include 'LQS_EUQ/GuiasTraker.php';
                   <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Entregadas</b> </a>
                 </li>
                 <li>
-                  <a href="TrackerTiempos.php"> <span>&nbsp;</span> <i class="fa fa-circle  theme_color"></i> <b class="theme_color">Tiempos</b> </a>
+                  <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle  theme_color"></i> <b class="theme_color">Guias Planificadas</b> </a>
                 </li>
                 <li>
                   <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
