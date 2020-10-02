@@ -1,6 +1,6 @@
 <?php
 session_start();
-include 'LQS_EUQ/Auth.php';
+include 'Auth.php';
 
 // FuncionLogin
 
@@ -93,7 +93,7 @@ if (!empty($_POST['Entrar'])) {
     <link rel="stylesheet" href="css/custom.css">
     <link rel="stylesheet" href="css/PreLoaderStyle.css">
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
-    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="80px" height="auto">
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="auto" height="auto">
     <link href="css/admin.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" type="text/css" media="screen" href="../css/AnimatedBk.css" />
     <!-- Estilos en Css -->
@@ -107,6 +107,8 @@ if (!empty($_POST['Entrar'])) {
             background-attachment: fixed;
             overflow: scroll;
         }
+
+
     </style>
 </head>
 

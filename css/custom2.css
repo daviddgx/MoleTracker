@@ -23,7 +23,7 @@
 
 .myform-all {
     overflow: hidden;
-    padding: 0 25px 15px 25px;
+    padding: 0 25px 15px px;
     background: rgba(151, 151, 151, 0.65);
     -moz-border-radius: 10px 10px 10px 10px;
     -webkit-border-radius: 10px 10px 10px 10px;

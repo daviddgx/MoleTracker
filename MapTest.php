@@ -20,6 +20,7 @@
    <!-- Requiered meta tags -->
    <meta charset="utf-8">
         <meta name="viewport" content="width=divice-whidth, initial-sace=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
         <title>Mole Tracker</title>
 
         <!-- Bootstrap CSS -->
@@ -40,8 +41,7 @@
     MoleTracker
   </a>
   <form class="form-inline">
-    <input class="form-control mr-sm-2" type="Su Ubicación" placeholder="Su Ubicación" aria-label="Su Ubicación">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar</button>
+
     
     <!-- Inicia Boton Modal Iniciar Tracking -->
 
@@ -206,37 +206,6 @@ getLatLon();
     </script>
   
 
-  <!--       Inicia Footer-->
-  <footer class="container-fluid bg-inverse formulario">
-            <div class="row rext-white py-4 text-white">
-                <div class="col-md-3">
-                    <img src="imagenes/LOGOTKM.PNG" alt="" width="200px" height="auto" class="float-left mr-3">
-                    <h4 class="lead"Mole Tracker></h4>
-                    <footer class="blockquote-footer">Proyecto de Graduación <cite title="Source Title" >David Orantes<br>0910-14-1052</cite></footer>
-                </div>
-
-            
-                    <div class="col-md-3">
-                        <h4 class="lead">Tecnologias</h4>
-                        <p>Lectura de datos con RFID<br>Geo localización por GPS<br>Seguimiento por GIS</p>
-                    </div>
-
-                    <div class="col-md-3">
-                        <h4 class="lead">Herramientas</h4>
-                        <p>Base de Datos: MySQL<br>Lenguajes: PHP, Java, JakartaEE</p>
-                    </div>
-                    <div class="col-md-3">
-                        <h4 class="lead ">Siguenos</h4>
-                        <a class="mybtn-social" href="https://facebook.com/"><span class="badge badge-primary">Facebook</span></a>
-                        <a class="mybtn-social" href="https://youtube.com/"><span class="badge badge-danger">Youtube</span></a>
-
-                    </div>
-            </div>
-        
-        
-        </footer>
-                
-<!--       Finaliza Footer-->
   <script src="js/jquery-2.1.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/common-script.js"></script>

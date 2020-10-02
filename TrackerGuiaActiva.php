@@ -2,6 +2,7 @@
 
 
 session_start();
+$fecha = date("d") . '-' . date("m") . '-' . date("Y");
 
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
@@ -213,36 +214,38 @@ registrar duplipados
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
+    <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>Mole Tracker / Tracker </title>
     <META NAME="ROBOTS" CONTENT="NOINDEX, NOFOLLOW">
-
-    <link href="css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
-    <link href="css/admin.css" rel="stylesheet" type="text/css" />
+    <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
     <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
     <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
     <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
     <link href="plugins/morris/morris.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/EstiloTablas.css">
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="auto" height="30">
+    <!-- MDBootstrap Datatables  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
     <link rel="stylesheet" href="css/custom2.css">
-    <link rel="icon" href="imagenes/LOGOTKM.PNG">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
-
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
     <style>
         body {
-            background: url("imagenes/Registro.jpg") no-repeat center center fixed;
+            background: url("imagenes/StaticF4.svg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
             background-attachment: fixed;
             overflow: scroll;
-            color: #ca8a43;
         }
 
         #map {
@@ -317,23 +320,21 @@ registrar duplipados
                                     </li>
                                     <li> <a href="help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
                                     <li> <a href="settings.html"><i class="fa fa-cog"></i> Configuración </a></li>
-                                    <li> <a href="login.php"><i class="fa fa-power-off"></i> LogOut</a> </li>
+                                    <li> <a href="logout.php"><i class="fa fa-power-off"></i> LogOut</a> </li>
                                 </ul>
                             </li>
                         </ul>
                     </div>
                 </div>
-
                 <div class="top_right_bar">
                     <div class="top_right">
                         <div class="top_right_menu">
-
                         </div>
                     </div>
                     <div class="user_admin dropdown">
                         <?php
-
                         echo '<div class="user_admin dropdown"><span class="user_adminname">Usuario: ' . $_SESSION['Usuario'] . '</span></div>';
+                        echo '<div class="user_admin dropdown"><span class="user_adminname">Fecha: ' . $fecha . '</span></div>';
                         ?>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -343,9 +344,6 @@ registrar duplipados
                             <li> <a href="logout.php"><i class="fa fa-power-off"></i> Logout</a> </li>
                         </ul>
                     </div>
-
-
-
                 </div>
             </div>
             <!--\\\\\\\ header top bar end \\\\\\-->
@@ -404,10 +402,27 @@ registrar duplipados
                     </div>
                 </div>
                 <!-- Finaliza Barra de Titulo en right -->
-
+                <!-- PreLoader -->
+                <div id="PreLoaderCont">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="spinner-grow text-dark" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Fin Preloader -->
                 <!-- Se Ingresan Los Mantenimientos -->
                 <!-- Finaliza Componente de Seguimiento -->
-
+                <div class="hide" id="Contenido">
                 <br>
                 <div class="container" id="Mapa">
                     <!-- Inicia Componente Registro Actividad -->
@@ -435,7 +450,7 @@ registrar duplipados
                     <div class="myform-all Color_Claro">
                         <!-- Inicia Tabla de Usuarios; -->
                         <br></br>
-                        <h1 class="Titulos">Guia actualmente Activa</h1>
+                        <h1 class="Titulos">Guia actualmente Activa : <?php if($_SESSION['GuiaSAPActiva'] == '' ){echo 'Ninguna Guia activa'; }else{ echo GuiaSAPActiva; } ?> </h1>
                         <form role="form" action="" method="post" class="">
                             <table>
                                 <tr>
@@ -564,76 +579,51 @@ registrar duplipados
                     <div class="myform-all Color_Claro">
                         <!-- Mapa -->
                         <br>
-                        <button type="button" class="btn btn-secondary  btn-lg btn-block" onclick=" AbrirMapa()">Abrir Mapa</button>
-                        <!-- Mapa -->
+
+                        <!-- Button trigger modal -->
+                        <button type="button " class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+                            Abrir Mapa
+                        </button>
+
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="ModalTrackerMole">Tracker</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <iframe src="http://localhost:63342/MoleTracker/MapTest.php"
+                                                marginwidth="0" marginheight="0" name="ventana_iframe"  border="0"
+                                                frameborder="0" width="100%" height="700">
+                                        </iframe>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button btn-lg btn-block" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Fin de prueba Mapa en Modal -->
                     </div>
                 </div>
+                <!-- Prueba de mapa en modal-->
                 <!-- Finaliza Componente Abrir Mapa -->
-
-
-
+                </div>
             </div>
 
-
-            <div class="demo"><span id="demo-setting"><i class="fa fa-cog txt-color-blueDark"></i></span>
-                <form>
-                    <legend class="no-padding margin-bottom-10" style="color:#6e778c;">Layout Options</legend>
-                    <section><label><input type="checkbox" class="checkbox style-0" id="smart-fixed-header" name="subscription"><span>Fixed Header</span></label><label><input type="checkbox" class="checkbox style-0" id="smart-fixed-navigation" name="terms"><span>Fixed Navigation</span></label><label><input type="checkbox" class="checkbox style-0" id="smart-rigth-navigation" name="terms"><span>Right Navigation</span></label><label><input type="checkbox" class="checkbox style-0" id="smart-boxed-layout" name="terms"><span>Boxed Layout</span></label>
-                        <span id="smart-bgimages" style="display: none;"></span>
-                    </section>
-                    <section>
-                        <h6 class="margin-top-10 semi-bold margin-bottom-5">Clear Localstorage</h6><a id="reset-smart-widget" class="btn btn-xs btn-block btn-primary" href="javascript:void(0);"><i class="fa fa-refresh"></i> Factory Reset</a>
-                    </section>
-                    <h6 class="margin-top-10 semi-bold margin-bottom-5">Ultimo Skins</h6>
-                    <section id="smart-styles"><a style="background-color:#23262F;" class="btn btn-block btn-xs txt-color-white margin-right-5" id="dark_theme" href="javascript:void(0);"><i id="skin-checked" class="fa fa-check fa-fw"></i> Dark Theme</a><a style="background:#E35154;" class="btn btn-block btn-xs txt-color-white" id="red_thm" href="javascript:void(0);">Red Theme</a><a style="background:#34B077;" class="btn btn-xs btn-block txt-color-darken margin-top-5" id="green_thm" href="javascript:void(0);">Green Theme</a><a style="background:#56A5DB" class="btn btn-xs btn-block txt-color-white margin-top-5" data-skinlogo="img/logo-pale.png" id="blue_thm" href="javascript:void(0);">Blue Theme</a><a style="background:#9C6BAD" class="btn btn-xs btn-block txt-color-white margin-top-5" id="magento_thm" href="javascript:void(0);">Magento Theme</a>
-                        <a style="background:#FFFFFF" class="btn btn-xs btn-block txt-color-black margin-top-5" id="light_theme" href="javascript:void(0);">Light Theme</a>
-                    </section>
-                </form>
-            </div>
-
-
-
-
-
-
-
-
-
-            <script src="js/jquery-2.1.0.js"></script>
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/common-script.js"></script>
-            <script src="js/jquery.slimscroll.min.js"></script>
-            <script src="js/jquery.sparkline.js"></script>
-            <script src="js/sparkline-chart.js"></script>
-            <script src="js/graph.js"></script>
-            <script src="js/edit-graph.js"></script>
-            <script src="plugins/kalendar/kalendar.js" type="text/javascript"></script>
-            <script src="plugins/kalendar/edit-kalendar.js" type="text/javascript"></script>
-
-            <script src="plugins/sparkline/jquery.sparkline.js" type="text/javascript"></script>
-            <script src="plugins/sparkline/jquery.customSelect.min.js"></script>
-            <script src="plugins/sparkline/sparkline-chart.js"></script>
-            <script src="plugins/sparkline/easy-pie-chart.js"></script>
-            <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
-            <script src="plugins/morris/raphael-min.js" type="text/javascript"></script>
-            <script src="plugins/morris/morris-script.js"></script>
-
-
-
-
-
-            <script src="plugins/demo-slider/demo-slider.js"></script>
-            <script src="plugins/knob/jquery.knob.min.js"></script>
-
-            <script src="js/jPushMenu.js"></script>
-            <script src="js/side-chats.js"></script>
-
-
-            <script src="js/animated.js" type="text/javascript"></script>
-            <script src="js/jPushMenu.js"></script>
-            <script src="js/side-chats.js"></script>
-            <script src="js/jquery.slimscroll.min.js"></script>
-            <script src="plugins/scroll/jquery.nanoscroller.js"></script>
+            <script src="js/FuncionesInternas.js"></script>
+            <!-- MDBootstrap Datatables  -->
+            <script>
+                window.addEventListener('load', () => {
+                    carga();
+                })
+            </script>
 
             <script>
                 var customLabel = {
@@ -714,7 +704,16 @@ registrar duplipados
 
             <script>
                 function AbrirMapa() {
-                    location.href = "http://localhost/Projects/MoleTracker/MapTest.php";
+                    var ifrm = document.createElement('iframe');
+                    ifrm.setAttribute('id', 'ifrm');
+
+                    var el = document.getElementById('marker');
+                    el.parentNode.insertBefore(ifrm, el);
+
+
+                    ifrm.setAttribute('src', 'http://localhost:63342/Projects/MoleTracker/MapTest.php');
+
+                   // location.href = "http://localhost:63342/Projects/MoleTracker/MapTest.php";
                 }
             </script>
 

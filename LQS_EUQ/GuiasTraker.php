@@ -1,6 +1,12 @@
 <?php
-     //paso 1 conectar con el servidor
-     include 'Auth.php';
+
+$error = "";
+$mensajeExito = "";
+$servername="localhost:3306";
+$username="Conection_STR";
+$password="Inicio94=";
+$dbname="traker_mole";
+
  try{
      $conn  = new PDO('mysql:host='.$servername.';dbname='.$dbname, $username, $password);
 

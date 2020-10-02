@@ -7,7 +7,7 @@ if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
 } else {
 }
-
+$fecha = date("d") . '-' . date("m") . '-' . date("Y");
 sleep(2);
 include 'Auth.php';
 include 'LQS_EUQ/GuiasRetrasadas.php';
@@ -26,21 +26,22 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
     <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/EstiloTablas.css">
-    <link rel="stylesheet" href="css/custom2.css">
-    <link rel="icon" href="imagenes/LOGOTKM.PNG">
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
+    <link href="plugins/morris/morris.css" rel="stylesheet" />
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="auto" height="30">
     <!-- MDBootstrap Datatables  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/custom2.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-
     <style>
         body {
-            background: url("imagenes/Registro.jpg") no-repeat center center fixed;
+            background: url("imagenes/StaticF4.svg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
@@ -85,7 +86,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                     </li>
                                     <li> <a href="help.html"><i class="fa fa-question-circle"></i> Ayuda</a> </li>
                                     <li> <a href="settings.html"><i class="fa fa-cog"></i> Configuración </a></li>
-                                    <li> <a href="login.php"><i class="fa fa-power-off"></i> LogOut</a> </li>
+                                    <li> <a href="logout.php"><i class="fa fa-power-off"></i> LogOut</a> </li>
                                 </ul>
                             </li>
                         </ul>
@@ -99,6 +100,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                     <div class="user_admin dropdown">
                         <?php
                         echo '<div class="user_admin dropdown"><span class="user_adminname">Usuario: ' . $_SESSION['Usuario'] . '</span></div>';
+                        echo '<div class="user_admin dropdown"><span class="user_adminname">Fecha: ' . $fecha . '</span></div>';
                         ?>
                         <ul class="dropdown-menu">
                             <div class="top_pointer"></div>
@@ -195,8 +197,9 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                             <br></br>
                             <h1 class="Titulos">Guias Retrasadas</h1>
                             <form role="form" action="" method="post" class="">
-                                <table id="example" class="table table-striped table-bordered" style="width:100%">
-                                    <tr class="table-danger">
+                                <table id="example" class="table table-striped  " cellspacing="0" width="100%">
+
+                                        <thead>
                                         <th>No. Guia</th>
                                         <th>Piloto</th>
                                         <th>Placa del Camion</th>
@@ -207,6 +210,8 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                         <th>Fecha de Entrega</th>
                                         <th>cantidad Cargada</th>
                                         <th>Estatus</th>
+                                        </thead>
+                                        <tbody>
                                         <?php
                                         for ($i = 0; $i < $lista_Guias; $i++) {
                                             echo "<tr>";
@@ -244,7 +249,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                             $lista_Guias = $ejecutar_sentencia->fetch(PDO::FETCH_ASSOC);
                                         }
                                         ?>
-                                    </tr>
+                                    </tbody>
                                 </table>
                             </form>
                         </div>

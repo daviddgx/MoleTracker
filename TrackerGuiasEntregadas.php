@@ -20,29 +20,34 @@ if ($_SESSION['Usuario'] == '') {
     <script src="https://kit.fontawesome.com/0589e46b1a.js" crossorigin="anonymous"></script>
     <link href="css/animate.css" rel="stylesheet" type="text/css" />
     <link href="css/adminContainer.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/EstiloTablas.css">
-    <link rel="stylesheet" href="css/custom2.css">
-    <link rel="icon" href="imagenes/LOGOTKM.PNG">
-    <link href="css/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+    <link href="plugins/kalendar/kalendar.css" rel="stylesheet">
+    <link rel="stylesheet" href="plugins/scroll/nanoscroller.css">
+    <link href="plugins/morris/morris.css" rel="stylesheet" />
+    <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="auto" height="30">
     <!-- MDBootstrap Datatables  -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="css/custom2.css">
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-
-
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <style>
         body {
-            background: url("imagenes/Registro.jpg") no-repeat center center fixed;
+            background: url("imagenes/StaticF4.svg") no-repeat center center fixed;
             -webkit-background-size: cover;
             -moz-background-size: cover;
             -o-background-size: cover;
             background-size: cover;
             background-attachment: fixed;
             overflow: scroll;
+        }
+
+        select{
+            height: 30px !important;
+            border-radius: 5px !important;
         }
 
         html,
@@ -200,12 +205,15 @@ if ($_SESSION['Usuario'] == '') {
                             <br>
                             <h1 class="Titulos">Guias Entregadas</h1>
                             <form role="form" action="" method="post" class="">
-                                <table id="example" class="table table-striped  table-sm" cellspacing="0" width="100%">
-                                    <tr>
+                                <table id="example" class="table table-striped  " cellspacing="0" width="100%">
+
+
+                                        <thead>
+                                        <tr>
                                         <th>No. Guia</th>
-                                        <th>GuiaSAP</th>
+                                        <th>Guia SAP</th>
                                         <th>Piloto</th>
-                                        <th>Placa_Camion</th>
+                                        <th>Placa Camion</th>
                                         <th>Capacidad del camion</th>
                                         <th>Rampa</th>
                                         <th>Destino</th>
@@ -213,6 +221,9 @@ if ($_SESSION['Usuario'] == '') {
                                         <th>Fecha de Entrega</th>
                                         <th>cantidad Cargada</th>
                                         <th>Estatus</th>
+                                        </tr>
+                                    </thead>
+                                        <tbody>
                                         <?php
                                         for ($i = 0; $i < $lista_Guias; $i++) {
                                             echo "<tr>";
@@ -253,7 +264,8 @@ if ($_SESSION['Usuario'] == '') {
                                             $lista_Guias = $ejecutar_sentencia->fetch(PDO::FETCH_ASSOC);
                                         }
                                         ?>
-                                    </tr>
+                                        </tbody>
+
                                 </table>
 
                             </form>
@@ -280,11 +292,7 @@ if ($_SESSION['Usuario'] == '') {
             </script>
         <script>
             $(document).ready(function() {
-                $('#example').DataTable( {
-                    "processing": true
-
-
-                } );
+                $('#example').DataTable();
             } );
         </script>
 
