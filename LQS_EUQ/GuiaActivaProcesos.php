@@ -8,7 +8,7 @@ try{
 
 
             //paso 3 hacer la sentencia sql y ejecutarla
-            $sqlDatos = "SELECT NoProceso,Area,Registrador,HoraRegistro,Estatus FROM traker_mole.trck_mle_reg_guias where GuiaSap =  '".$_SESSION['GuiaSAPActiva']."'";
+            $sqlDatos = "SELECT NoProceso,Area,Registrador,HoraRegistro,Estatus,Accion FROM traker_mole.trck_mle_reg_guias where GuiaSap =  '".$_SESSION['GuiaSAPActiva']."'";
             $ejecutar_sentenciaGuias = $conn->query($sqlDatos);
             if(!$ejecutar_sentenciaGuias)
             {

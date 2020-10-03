@@ -3,6 +3,7 @@
 
 session_start();
 $fecha = date("d") . '-' . date("m") . '-' . date("Y");
+$_SESSION['FechaTrabajo'] = date("d") . '-' . date("m") . '-' . date("Y");
 
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
@@ -10,8 +11,7 @@ if ($_SESSION['Usuario'] == '') {
 }
 
 include 'Auth.php';
-include 'LQS_EUQ/GuiaActiva.php';
-include 'LQS_EUQ/GuiaActivaProcesos.php';
+include 'LQS_EUQ/RegistrosAreasExternas.php';
 $timestamp = date("Y-m-d H:i:s");
 
 
@@ -248,8 +248,10 @@ registrar duplipados
             overflow: scroll;
         }
 
-        #map {
-            height: 100%;
+        select,
+        input[type="file"] {
+            height: 20px !important;
+            line-height: 10px;
         }
     </style>
 
@@ -333,7 +335,7 @@ registrar duplipados
                     </div>
                     <div class="user_admin dropdown">
                         <?php
-                        echo '<div class="user_admin dropdown"><span class="user_adminname">Usuario: ' . $_SESSION["Usuario"] . '</span></div>';
+                        echo '<div class="user_admin dropdown"><span class="user_adminname">Usuario: ' . $_SESSION['Usuario'] . '</span></div>';
                         echo '<div class="user_admin dropdown"><span class="user_adminname">Fecha: ' . $fecha . '</span></div>';
                         ?>
                         <ul class="dropdown-menu">
@@ -364,20 +366,25 @@ registrar duplipados
                         <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> TRACKER <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul class="opened" style="display:block">
                                 <li>
-                                    <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>DashBoard</b> </a>
+                                    <?php
+                                    echo '<a href="DashboardSupervisorAreas.php?Area='.$_SESSION['Area'].'&TipoArea='.$_SESSION['TipoArea'].'">  <i class="fa fa-circle"></i> <b >Registro pilotos</b></a>';
+                                    ?>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guias Entregadas</b> </a>
+                                    <?php
+                                    echo '<a href="TrackerAreaHistorico.php?Area='.$_SESSION['Area'].'&TipoArea='.$_SESSION['TipoArea'].'">  <i class="fa fa-circle"></i> <b >Datos Historicos</b></a>';
+                                    ?>
                                 </li>
-                                <li>
-                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
-                                </li>
-                                <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
-                                </li>
-                                <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guia Activa</b> </a>
-                                </li>
+
+                                <?php if($_SESSION['TipoArea']  == "Registro"){echo '<li>
+                                    <a href="TrackerAreaRegistro.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registro Externos</b> </a>
+                                </li>' ;}?>
+
+                                <?php if($_SESSION['TipoArea']  == "Registro"){echo '<li>
+                                    <a href="TrackerAreaRegistro_His.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Historico Externos</b> </a>
+                                </li>' ;}?>
+
+
 
                             </ul>
                         </li>
@@ -390,7 +397,7 @@ registrar duplipados
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Guia Activa...</h1>
+                        <h1>Administrador de Area <?php echo $_SESSION['Area'];?></h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -430,11 +437,102 @@ registrar duplipados
 
                         <div class="my-content formulario">
                             <form role="form" action="" method="post">
-                                <h1><strong>Proceso de </strong> Registro</h1>
-                                <div class="form-grup">
-                                    <input type="text" name="RFIDLog" placeholder="RFID..." class="form-control" id="form-username">
+                                <h1><strong>Registro </strong> Externos a  <?php echo $_SESSION['Area'];?></h1>
+                                <!-- Division en columnas -->
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <!-- Componente de Formulario -->
+                                        <div class="form-grup">
+                                            <input type="text" name="form-Nombre" placeholder="Nombre..."
+                                                   class=" form-control" id="form-Nombre">
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div class="form-grup">
+                                            <input type="text" name="form-Apellido"
+                                                   placeholder="Apellido..." class=" form-control"
+                                                   id="form-Apellido">
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div class="form-grup">
+                                            <input type="text" name="form-DPI"
+                                                   placeholder="DPI / Licencia..." class=" form-control"
+                                                   id="form-DPIPiloto">
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div class="form-grup">
+                                            <input type="text" name="form-Placa"
+                                                   placeholder="Placa del vehículo..." class=" form-control"
+                                                   id="form-Placa">
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div>
+                                            <select class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched" style="height: 50px !important; line-height: 50px;"
+                                                    name="form-Accion" id="form-Accion"
+                                                    ng-model="properties.value"
+                                                    ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
+                                                    ng-required="properties.required"
+                                                    ng-disabled="properties.disabled">
+                                                <option style="display:none; height:60px;"  value=""
+                                                        class="ng-binding">
+                                                    Acción...
+                                                </option>
+                                                <option value="Entrada" label="Entrada">Visita
+                                                </option>
+                                                <option value="Salida" label="Salida">Cita
+                                                </option>
+
+
+                                            </select>
+
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div>
+                                            <select class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched" style="height: 50px !important; line-height: 50px;"
+                                                    name="form-TipoVisita" id="form-TipoVisita"
+                                                    ng-model="properties.value"
+                                                    ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
+                                                    ng-required="properties.required"
+                                                    ng-disabled="properties.disabled">
+                                                <option style="display:none; height:60px;"  value=""
+                                                        class="ng-binding">
+                                                    Motivo...
+                                                </option>
+                                                <option value="Visita" label="Visita">Visita
+                                                </option>
+                                                <option value="Cita" label="Cita">Cita
+                                                </option>
+                                                <option value="Compra" label="Compra">Comra
+                                                </option>
+                                                <option value="Proveedor" label="Proveedor">Proveedor
+
+                                            </select>
+
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                        <div class="saltito"><h1></h1></div>
+                                        <!-- Componente de Formulario -->
+                                        <div class="form-grup">
+                                            <input type="text" name="form-Comentarios"
+                                                   placeholder="Comentarios..." class=" form-control"
+                                                   id="form-Comentarios">
+                                        </div>
+                                        <!-- Fin Componente de Formulario -->
+                                    </div>
+
                                 </div>
-                                <br>
+                                <!-- Fin Division en columnas -->
+
+                                <div class="saltito"><h1></h1></div>
                                 <div> <?php echo $error . $mensajeExito; ?></div>
                                 <div class=""><input type="submit" name="Registrar" value="Registrar" class="effect-button"></input></div>
                         </div>
@@ -450,71 +548,55 @@ registrar duplipados
                     <div class="myform-all Color_Claro">
                         <!-- Inicia Tabla de Usuarios; -->
                         <br></br>
-                        <h1 class="Titulos">Guia actualmente Activa : <?php if($_SESSION["GuiaSAPActiva"] == '' ){echo 'Ninguna Guia activa'; }else{ echo $_SESSION["GuiaSAPActiva"]; } ?> </h1>
+                        <h1 class="Titulos">Registros del dia <?php echo $fecha;?>  </h1>
                         <form role="form" action="" method="post" class="">
-                            <table class="table  table-bordered">
-                                <tr>
-                                    <th>No. Guia</th>
-                                    <th>Guia SAP</th>
-                                    <th>Piloto</th>
-                                    <th>Placa del Camion</th>
-                                    <th>Capacidad de Carga</th>
-                                    <th>Rampa</th>
-                                    <th>Destino</th>
-                                    <th>Fecha de Carga</th>
-                                    <th>Fecha de Entrega</th>
-                                    <th>cantidad Cargada</th>
-                                    <th>Estatus</th>
+                            <table id="example" class="table table-striped  " cellspacing="0" width="100%">
+                                <thead>
+                                    <th>Nombre</th>
+                                    <th>Apellido</th>
+                                    <th>ID</th>
+                                    <th>Placa</th>
+                                    <th>Motivo</th>
+                                    <th>Hora</th>
+                                    <th>Acción</th>
+                                <thead>
+                                <tbody>
                                     <?php
+                                    for ($i = 0; $i < $listaRegistros; $i++) {
+                                        echo "<tr>";
 
-                                    echo "<tr>";
-                                    echo "<td>";
-                                    echo $lista_Guias['ID_GUIA'];
-                                    echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Nombre'];
+                                        echo "</td>";
 
-                                    echo "<td>";
-                                    $_SESSION['GuiaSAPActiva'] = $lista_Guias['GuiaSAP'];
-                                    echo $lista_Guias['GuiaSAP'];
-                                    echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Apellido'];
+                                        echo "</td>";
 
-                                    echo "<td>";
-                                    echo $lista_Guias['Piloto'];
-                                    echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['id'];
+                                        echo "</td>";
 
-                                    echo "<td>";
-                                    echo $lista_Guias['Placa_Camion'];
-                                    echo "</td>";
-
-                                    echo "<td>";
-                                    echo $lista_Guias['Camion_Capacidad'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['Rampa'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['Destino'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['Fecha_Carga'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['Fecha_Entrega'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['PesoBruto'];
-                                    echo "</td>";
-                                    echo "<td>";
-                                    echo $lista_Guias['Estatus'];
-                                    echo "</td>";
-
-                                    echo "</tr>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Placa'];
+                                        echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Motivo'];
+                                        echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Hora'];
+                                        echo "</td>";
+                                        echo "<td>";
+                                        echo $listaRegistros['Accion'];
+                                        echo "</td>";
+                                        echo "</tr>";
+                                        $listaRegistros = $ejecutar_sentenciaRegistrosExternos->fetch(PDO::FETCH_ASSOC);
+                                    }
 
                                     ?>
-                                </tr>
-
+                                </tbody>
                             </table>
                         </form>
-
                     </div>
                 </div>
                 <!-- Finaliza Tabla de Usuarios;  -->
@@ -522,94 +604,8 @@ registrar duplipados
                 <div class="container" id="Mapa">
                     <!-- Inicia Componente de Seguimiento -->
                     <div class="myform-all Color_Claro">
-                        <br>
-                        <!-- Inicia Tabla de seguimiento -->
-                        <br></br>
-                        <h1 class="Titulos">Seguimiento del Proceso</h1>
-                        <form role="form" action="" method="post" class="">
-                            <table class="table  table-bordered">
-                                <tr>
-
-                                    <th>Area</th>
-                                    <th>Registrado Por</th>
-                                    <th>Hora de Registro</th>
-                                    <th>Estatus</th>
-                                    <th>Registro</th>
-                                    <?php
-                                    for ($i = 0; $i < $lista_ProcesoGuias; $i++) {
-                                        echo "<tr>";
-
-                                        echo "<td>";
-                                        echo $lista_ProcesoGuias['Area'];
-                                        echo "</td>";
-
-                                        echo "<td>";
-                                        echo $lista_ProcesoGuias['Registrador'];
-                                        echo "</td>";
-
-                                        echo "<td>";
-                                        echo $lista_ProcesoGuias['HoraRegistro'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_ProcesoGuias['Estatus'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_ProcesoGuias['Accion'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo "</tr>";
-                                       $lista_ProcesoGuias = $ejecutar_sentenciaGuias->fetch(PDO::FETCH_ASSOC);
-                                    }
-                                    ?>
-                                </tr>
-
-                            </table>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- Finaliza Tabla de  Seguimiento -->
 
 
-                <!-- Finaliza Componente de Seguimiento -->
-
-                <br>
-                <div class="container" id="Mapa">
-                    <!-- Inicia Componente Abrir Mapa -->
-                    <div class="myform-all Color_Claro">
-                        <!-- Mapa -->
-                        <br>
-
-                        <!-- Button trigger modal -->
-                        <button type="button " class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter">
-                            Abrir Mapa
-                        </button>
-
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="ModalTrackerMole">Tracker</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <iframe src="http://localhost:63342/MoleTracker/MapTest.php"
-                                                marginwidth="0" marginheight="0" name="ventana_iframe"  border="0"
-                                                frameborder="0" width="100%" height="700">
-                                        </iframe>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button btn-lg btn-block" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Fin de prueba Mapa en Modal -->
                     </div>
                 </div>
                 <!-- Prueba de mapa en modal-->
@@ -626,95 +622,9 @@ registrar duplipados
             </script>
 
             <script>
-                var customLabel = {
-                    restaurant: {
-                        label: 'R'
-                    },
-                    bar: {
-                        label: 'B'
-                    }
-                };
-
-                function initMap() {
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        center: new google.maps.LatLng(-33.863276, 151.207977),
-                        zoom: 12
-                    });
-                    var infoWindow = new google.maps.InfoWindow;
-
-                    // Change this depending on the name of your PHP or XML file
-                    downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
-                        var xml = data.responseXML;
-                        var markers = xml.documentElement.getElementsByTagName('marker');
-                        Array.prototype.forEach.call(markers, function(markerElem) {
-                            var id = markerElem.getAttribute('id');
-                            var name = markerElem.getAttribute('name');
-                            var address = markerElem.getAttribute('address');
-                            var type = markerElem.getAttribute('type');
-                            var point = new google.maps.LatLng(
-                                parseFloat(markerElem.getAttribute('lat')),
-                                parseFloat(markerElem.getAttribute('lng')));
-
-                            var infowincontent = document.createElement('div');
-                            var strong = document.createElement('strong');
-                            strong.textContent = name
-                            infowincontent.appendChild(strong);
-                            infowincontent.appendChild(document.createElement('br'));
-
-                            var text = document.createElement('text');
-                            text.textContent = address
-                            infowincontent.appendChild(text);
-                            var icon = customLabel[type] || {};
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: point,
-                                label: icon.label
-                            });
-                            marker.addListener('click', function() {
-                                infoWindow.setContent(infowincontent);
-                                infoWindow.open(map, marker);
-                            });
-                        });
-                    });
-                }
-
-
-
-                function downloadUrl(url, callback) {
-                    var request = window.ActiveXObject ?
-                        new ActiveXObject('Microsoft.XMLHTTP') :
-                        new XMLHttpRequest;
-
-                    request.onreadystatechange = function() {
-                        if (request.readyState == 4) {
-                            request.onreadystatechange = doNothing;
-                            callback(request, request.status);
-                        }
-                    };
-
-                    request.open('GET', url, true);
-                    request.send(null);
-                }
-
-                function doNothing() {}
-            </script>
-
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMS9Z53e5o37lHssInOqrhm3I87WpYxZg"></script>
-
-
-            <script>
-                function AbrirMapa() {
-                    var ifrm = document.createElement('iframe');
-                    ifrm.setAttribute('id', 'ifrm');
-
-                    var el = document.getElementById('marker');
-                    el.parentNode.insertBefore(ifrm, el);
-
-
-                    ifrm.setAttribute('src', 'http://localhost:63342/Projects/MoleTracker/MapTest.php');
-
-                   // location.href = "http://localhost:63342/Projects/MoleTracker/MapTest.php";
-                }
+                $(document).ready(function () {
+                    $('#example').DataTable();
+                });
             </script>
 
 </body>

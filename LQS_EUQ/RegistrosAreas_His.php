@@ -8,7 +8,7 @@ try{
 
 
             //paso 3 hacer la sentencia sql y ejecutarla
-            $sqlDatos = "SELECT GuiaSap,Area,Registrador,HoraRegistro,Piloto FROM traker_mole.trck_mle_reg_guias where HoraRegistro like '".$_SESSION['FechaTrabajo']."%'";
+            $sqlDatos = "SELECT GuiaSap,Area,Registrador,HoraRegistro,Piloto FROM traker_mole.trck_mle_reg_guias ";
 
             $ejecutar_sentenciaRegistros = $conn->query($sqlDatos);
             if(!$ejecutar_sentenciaRegistros)

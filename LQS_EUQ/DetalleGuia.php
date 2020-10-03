@@ -7,7 +7,7 @@ try {
     $conn = new PDO('mysql:host=' . $servername . ';dbname=' . $dbname, $username, $password);
 
     //paso 3 hacer la sentencia sql y ejecutarla
-    $sqlDatos = "SELECT ID_GUIA,GuiaSAP,Piloto,Placa_Camion,Camion_Capacidad,Rampa,Destino,Fecha_Carga,Fecha_Entrega,PesoBruto,Estatus,Verificador,Traker_Inicio,Tracker_Final FROM traker_mole.trck_mle_guias where GuiaSAP = '" . $_SESSION['GuiaDetalle'] . "'";
+    $sqlDatos = "SELECT ID_GUIA,GuiaSAP,Piloto,Placa_Camion,Camion_Capacidad,Rampa,Destino,Fecha_Carga,Fecha_Entrega,PesoBruto,Estatus,Verificador,Traker_Inicio,Tracker_Final FROM traker_mole.trck_mle_guias where GuiaSAP = '".$_SESSION['GuiaDetalle']."'";
     $ejecutar_sentencia = $conn->query($sqlDatos);
     if (!$ejecutar_sentencia) {
         echo 'Hay un error en la sentencia de SQL: ' . $sqlDatos;
@@ -25,7 +25,7 @@ try {
 try {
     $conn = new PDO('mysql:host=' . $servername . ';dbname=' . $dbname, $username, $password);
     //paso 3 hacer la sentencia sql y ejecutarla
-    $sqlDatos = "SELECT NoProceso,Area,Registrador,HoraRegistro,Estatus FROM traker_mole.trck_mle_reg_guias where GuiaSap ='" . $_SESSION['GuiaDetalle'] . "'";
+    $sqlDatos = "SELECT NoProceso,Area,Registrador,HoraRegistro,Estatus,Accion FROM traker_mole.trck_mle_reg_guias where GuiaSap ='" . $_SESSION['GuiaDetalle'] . "'";
     $ejecutar_sentenciaGuias = $conn->query($sqlDatos);
     if (!$ejecutar_sentenciaGuias) {
         echo 'Hay un error en la sentencia de SQL: ' . $sqlDatos;
@@ -39,4 +39,6 @@ try {
     echo $ex;
 
 }
+
+
 ?>

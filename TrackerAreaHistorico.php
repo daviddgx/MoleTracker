@@ -4,15 +4,15 @@
 session_start();
 $fecha = date("d") . '-' . date("m") . '-' . date("Y");
 $_SESSION['FechaTrabajo'] = date("d") . '-' . date("m") . '-' . date("Y");
-$Area = "Definir desde URL";
-$TipoArea = "Ingreso / Salida";
+$_SESSION['Area'] = $_GET["Area"];
+$_SESSION['TipoArea'] =  $_GET["TipoArea"];
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
 } else {
 }
 
 include 'Auth.php';
-include 'LQS_EUQ/RegistrosAreas.php';
+include 'LQS_EUQ/RegistrosAreas_His.php';
 $timestamp = date("Y-m-d H:i:s");
 
 
@@ -249,8 +249,10 @@ registrar duplipados
             overflow: scroll;
         }
 
-        #map {
-            height: 100%;
+        select,
+        input[type="file"] {
+            height: 20px !important;
+            line-height: 10px;
         }
     </style>
 
@@ -364,16 +366,26 @@ registrar duplipados
                     <ul>
                         <li class="left_nav_active theme_border"><a href="javascript:void(0);"><i class="fa fa-home"></i> TRACKER <span class="left_nav_pointer"></span> <span class="plus"><i class="fa fa-plus"></i></span> </a>
                             <ul class="opened" style="display:block">
+
+
+
                                 <li>
-                                    <a href="TrackerArea.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Registro pilotos</b> </a>
+                                    <?php
+                                    echo '<a href="DashboardSupervisorAreas.php?Area='.$_SESSION['Area'].'&TipoArea='.$_SESSION['TipoArea'].'">  <i class="fa fa-circle"></i> <b >Registro pilotos</b></a>';
+                                    ?>
+                                   <!-- <a href="DashboardSupervisorAreas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Registro pilotos</b> </a> -->
                                 </li>
                                 <li>
-                                    <a href="TrackerAreaHistorico.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Datos Historicos</b> </a>
+                                    <a href="TrackerAreaHistorico.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Datos Historicos</b> </a>
                                 </li>
 
-                                <?php if($TipoArea == "Ingreso / Salida"){echo '<li>
+                                <?php if($_SESSION['TipoArea']  == "Registro"){echo '<li>
                                     <a href="TrackerAreaRegistro.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Registro Externos</b> </a>
                                 </li>';}?>
+
+                                <?php if($_SESSION['TipoArea']  == "Registro"){echo '<li>
+                                    <a href="TrackerAreaRegistro_His.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Historico Externos</b> </a>
+                                </li>' ;}?>
 
 
 
@@ -388,7 +400,7 @@ registrar duplipados
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Administrador de Area <?php echo $Area?></h1>
+                        <h1>Administrador de Area <?php echo $_SESSION['Area'];?></h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -424,23 +436,7 @@ registrar duplipados
                 <br>
                 <div class="container" id="Mapa">
                     <!-- Inicia Componente Registro Actividad -->
-                    <div class="myform-all Color_Claro">
 
-                        <div class="my-content formulario">
-                            <form role="form" action="" method="post">
-                                <h1><strong>Proceso de </strong> Registro <?php echo $Area;?></h1>
-                                <div class="form-grup">
-                                    <input type="text" name="RFIDLog" placeholder="RFID..." class="form-control" id="form-username">
-                                </div>
-                                <br>
-                                <div> <?php echo $error . $mensajeExito; ?></div>
-                                <div class=""><input type="submit" name="Registrar" value="Registrar" class="effect-button"></input></div>
-                        </div>
-                        </form>
-
-                    </div>
-                </div>
-                <!-- Finaliza Componente Registro actividad -->
 
                 <br>
                 <!-- Inicia La seccion de usuarios -->
@@ -448,7 +444,7 @@ registrar duplipados
                     <div class="myform-all Color_Claro">
                         <!-- Inicia Tabla de Usuarios; -->
                         <br></br>
-                        <h1 class="Titulos">Registros del dia <?php echo $fecha;?>  </h1>
+                        <h1 class="Titulos">Registros Historicos  </h1>
                         <form role="form" action="" method="post" class="">
                             <table id="example" class="table table-striped  " cellspacing="0" width="100%">
                                 <thead>
@@ -464,7 +460,7 @@ registrar duplipados
                                         echo "<tr>";
 
                                         echo "<td>";
-                                        echo $listaRegistros['GuiaSAP'];
+                                        echo $listaRegistros['GuiaSap'];
                                         echo "</td>";
 
                                         echo "<td>";
@@ -514,95 +510,9 @@ registrar duplipados
             </script>
 
             <script>
-                var customLabel = {
-                    restaurant: {
-                        label: 'R'
-                    },
-                    bar: {
-                        label: 'B'
-                    }
-                };
-
-                function initMap() {
-                    var map = new google.maps.Map(document.getElementById('map'), {
-                        center: new google.maps.LatLng(-33.863276, 151.207977),
-                        zoom: 12
-                    });
-                    var infoWindow = new google.maps.InfoWindow;
-
-                    // Change this depending on the name of your PHP or XML file
-                    downloadUrl('https://storage.googleapis.com/mapsdevsite/json/mapmarkers2.xml', function(data) {
-                        var xml = data.responseXML;
-                        var markers = xml.documentElement.getElementsByTagName('marker');
-                        Array.prototype.forEach.call(markers, function(markerElem) {
-                            var id = markerElem.getAttribute('id');
-                            var name = markerElem.getAttribute('name');
-                            var address = markerElem.getAttribute('address');
-                            var type = markerElem.getAttribute('type');
-                            var point = new google.maps.LatLng(
-                                parseFloat(markerElem.getAttribute('lat')),
-                                parseFloat(markerElem.getAttribute('lng')));
-
-                            var infowincontent = document.createElement('div');
-                            var strong = document.createElement('strong');
-                            strong.textContent = name
-                            infowincontent.appendChild(strong);
-                            infowincontent.appendChild(document.createElement('br'));
-
-                            var text = document.createElement('text');
-                            text.textContent = address
-                            infowincontent.appendChild(text);
-                            var icon = customLabel[type] || {};
-                            var marker = new google.maps.Marker({
-                                map: map,
-                                position: point,
-                                label: icon.label
-                            });
-                            marker.addListener('click', function() {
-                                infoWindow.setContent(infowincontent);
-                                infoWindow.open(map, marker);
-                            });
-                        });
-                    });
-                }
-
-
-
-                function downloadUrl(url, callback) {
-                    var request = window.ActiveXObject ?
-                        new ActiveXObject('Microsoft.XMLHTTP') :
-                        new XMLHttpRequest;
-
-                    request.onreadystatechange = function() {
-                        if (request.readyState == 4) {
-                            request.onreadystatechange = doNothing;
-                            callback(request, request.status);
-                        }
-                    };
-
-                    request.open('GET', url, true);
-                    request.send(null);
-                }
-
-                function doNothing() {}
-            </script>
-
-            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMS9Z53e5o37lHssInOqrhm3I87WpYxZg"></script>
-
-
-            <script>
-                function AbrirMapa() {
-                    var ifrm = document.createElement('iframe');
-                    ifrm.setAttribute('id', 'ifrm');
-
-                    var el = document.getElementById('marker');
-                    el.parentNode.insertBefore(ifrm, el);
-
-
-                    ifrm.setAttribute('src', 'http://localhost:63342/Projects/MoleTracker/MapTest.php');
-
-                   // location.href = "http://localhost:63342/Projects/MoleTracker/MapTest.php";
-                }
+                $(document).ready(function () {
+                    $('#example').DataTable();
+                });
             </script>
 
 </body>

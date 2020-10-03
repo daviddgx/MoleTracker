@@ -19,7 +19,10 @@ if (!empty($_POST['Entrar'])) {
         $LClave = md5($LClave);
         //echo $LUser;
         //echo $LClave;
-        $sql = "SELECT RFID,Pass,Roll_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'  or Usuario ='$LUser'  AND Pass = '$LClave'";
+        $sql = "SELECT A.RFID,A.Pass,A.Roll_Usuario,A.Usuario,B.NOMBRE,B.TIPO_AREA
+                FROM traker_mole.trkml_usuarios A
+                LEFT JOIN traker_mole.trck_mle_areas B
+                ON A.Id_Area = B.ID_AREA where A.RFID = '$LUser' AND A.Pass = '$LClave'  or A.Usuario ='$LUser'  AND A.Pass = '$LClave'";
         $result = $conn->query($sql);
         // Fin Obtencion de datos
         try {
@@ -46,7 +49,7 @@ if (!empty($_POST['Entrar'])) {
 
                         case '3':
                             $_SESSION['Usuario'] = $row['Usuario'];
-                            header('Location: DashboardSupervisorAreas.php');
+                            header('Location: DashboardSupervisorAreas.php?Area='.$row['NOMBRE'].'&TipoArea='.$row['TIPO_AREA']);
                             break;
 
                         case '4':

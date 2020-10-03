@@ -470,14 +470,12 @@ $timestamp = date("Y-m-d H:i:s");
                                         <th>Area</th>
                                         <th>Registrado Por</th>
                                         <th>Hora de Registro</th>
+                                        <th>Marcado</th>
 
 
                                         <?php
                                         for ($i = 0; $i < $lista_ProcesoGuias; $i++) {
                                             echo "<tr>";
-                                            echo "<td>";
-                                            echo $lista_ProcesoGuias['NoProceso'];
-                                            echo "</td>";
 
                                             echo "<td>";
                                             echo $lista_ProcesoGuias['Area'];
@@ -489,6 +487,10 @@ $timestamp = date("Y-m-d H:i:s");
 
                                             echo "<td>";
                                             echo $lista_ProcesoGuias['HoraRegistro'];
+                                            echo "</td>";
+
+                                            echo "<td>";
+                                            echo $lista_ProcesoGuias['Accion'];
                                             echo "</td>";
 
                                             echo "<td>";
