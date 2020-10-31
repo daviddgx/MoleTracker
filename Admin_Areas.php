@@ -128,7 +128,7 @@ include 'LQS_EUQ/AreasRegistradas.php';
 
     </div>
     <!--\\\\\\\ header end \\\\\\-->
-    <div class="inner">
+
         <!--\\\\\\\ inner start \\\\\\-->
         <div class="left_nav">
 
@@ -322,9 +322,9 @@ include 'LQS_EUQ/AreasRegistradas.php';
                 $('#example').DataTable();
             });
         </script>
-        <script
+        <script>
                 function CrearAreaNueva(){
-                location.href="http://localhost/Projects/MoleTracker/Admin_NuevaArea.php" ;
+                location.href="http://localhost:63342/MoleTracker/Admin_NuevaArea.php";
                 }
         </script>
 

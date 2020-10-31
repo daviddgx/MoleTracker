@@ -328,7 +328,7 @@ include 'LQS_EUQ/UsuariosRegistrados.php';
 
         <script>
             function CrearUsuario() {
-                location.href = "http://localhost/Projects/MoleTracker/Admin_NuevoUsuario.php";
+                location.href = "http://localhost:63342/MoleTracker/Admin_NuevoUsuario.php";
             }
         </script>
             </body>

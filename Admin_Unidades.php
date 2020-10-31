@@ -57,6 +57,10 @@ include 'LQS_EUQ/UnidadesRegistradas.php';
             line-height: 10px;
         }
 
+        .container{
+            max-width: 2140px;
+        }
+
 
     </style>
 </head>
@@ -212,18 +216,12 @@ include 'LQS_EUQ/UnidadesRegistradas.php';
             </div>
             <!-- Fin Preloader -->
             <div class="hide" id="Contenido">
-                <div class="container clear_both padding_fix">
+                <div class="container ">
 
                     <!-- Iicia Contenido -->
 
                     <!-- NavBar Mantenimiento -->
                     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-
-                        <button class="navbar-toggler" type="button" data-toggle="collapse"
-                                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                                aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
 
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -250,63 +248,47 @@ include 'LQS_EUQ/UnidadesRegistradas.php';
                                 <table id="example" class="table table-striped  " cellspacing="0" width="100%">
                                     <thead>
 
-                                    <th>ID Vehiculo</th>
                                     <th>Marca</th>
                                     <th>Modelo</th>
-                                    <th>Placa del Camion</th>
+                                    <th>Placa</th>
                                     <th>Linea</th>
                                     <th>Tipo</th>
                                     <th>Velocidad</th>
-                                    <th>Capacidad</th>
+                                    <th>Carga en KG</th>
+                                    <th>Editar</th>
                                     <thead>
                                     <tbody>
                                     <?php
                                     for ($i = 0; $i < $lista_Unidades; $i++) {
                                         echo "<tr>";
                                         echo "<td>";
-                                        echo $lista_Unidades['ID_GUIA'];
+                                        echo $lista_Unidades['MARCA'];
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo $lista_Unidades['GuiaSAP'];
+                                        echo $lista_Unidades['MODELO'];
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo $lista_Unidades['Piloto'];
+                                        echo $lista_Unidades['PLACA'];
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo $lista_Unidades['Placa_Camion'];
+                                        echo $lista_Unidades['LINEA'];
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo $lista_Unidades['Camion_Capacidad'];
+                                        echo $lista_Unidades['TIPO'];
                                         echo "</td>";
                                         echo "<td>";
-                                        echo $lista_Unidades['Rampa'];
+                                        echo $lista_Unidades['VELOCIDAD'];
                                         echo "</td>";
                                         echo "<td>";
-                                        echo $lista_Unidades['Destino'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_Unidades['Fecha_Carga'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_Unidades['Fecha_Entrega'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_Unidades['PesoBruto'];
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo $lista_Unidades['Estatus'];
+                                        echo $lista_Unidades['CAPACIDAD'];
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo '<a href="' . $lista_Unidades['ID_GUIA'] . '"  class="fa fa-dashboard btn btn-primary data-togle="modal" data-target="#myModal"></a>';
-                                        echo "</td>";
-
-                                        echo "<td>";
-                                        echo '<a href="' . $lista_Unidades['ID_GUIA'] . '"  class="fa fa-search btn btn-info data-togle="modal" data-target="#myModal"></a>';
+                                        echo '<a href="' . $lista_Unidades['ID_VEHICULO'] . '"  class="fa fa-pen btn btn-info data-togle="modal" data-target="#myModal"></a>';
                                         echo "</td>";
 
                                         echo "</tr>";

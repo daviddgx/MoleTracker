@@ -332,7 +332,7 @@ include 'LQS_EUQ/PilotosRegistrados.php';
         <script>
 
             function CrearPiloto() {
-                location.href = "http://localhost/Projects/MoleTracker/Admin_NuevoPiloto.php";
+                location.href = "http://localhost:63342/MoleTracker/Admin_NuevoPiloto.php";
             }
         </script>
 
