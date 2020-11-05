@@ -256,9 +256,9 @@ include 'LQS_EUQ/PilotosRegistrados.php';
                                     <th>Nombre de Usuario</th>
                                     <th>Estatus</th>
                                     <th>Editar</th>
-                                    <th>Detalles</th>
+
                                     </thead>
-                                    >
+
                                     <tbody>
                                     <?php
                                     for ($i = 0; $i < $lista_Usuarios; $i++) {
@@ -274,32 +274,26 @@ include 'LQS_EUQ/PilotosRegistrados.php';
                                         echo "<td>";
                                         echo $lista_Usuarios['Apellido'];
                                         echo "</td>";
-
                                         echo "<td>";
                                         echo $lista_Usuarios['Roll_Usuario'];
                                         echo "</td>";
-
                                         echo "<td>";
                                         echo $lista_Usuarios['Usuario'];
                                         echo "</td>";
                                         echo "<td>";
                                         echo $lista_Usuarios['Estatus'];
                                         echo "</td>";
-                                        echo "<td>";
-                                        echo '<a href="' . $lista_Usuarios['RFID'] . '"  class="fa fa-info btn btn-info data-togle="modal" data-target="#myModal"> Detalles</a>';
-                                        echo "</td>";
 
                                         echo "<td>";
-                                        echo '<a href="' . $lista_Usuarios['RFID'] . '"  class="fa fa-pencil btn btn-secondary data-togle="modal" data-target="#myModal"> Editar</a>';
+                                        echo '<a href=Admin_ModificarPiloto.php?Piloto=' . $lista_Usuarios['RFID'] . '  class="fa fa-pencil btn btn-secondary data-togle="modal" data-target="#myModal"> Editar</a>';
                                         echo "</td>";
-
                                         echo "</tr>";
 
                                         $lista_Usuarios = $ejecutar_sentencia->fetch(PDO::FETCH_ASSOC);
                                     }
                                     ?>
                                     </tbody>
-                                    >
+
 
                                 </table>
                             </form>

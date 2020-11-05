@@ -285,7 +285,7 @@ include 'LQS_EUQ/UsuariosRegistrados.php';
                                             echo "</td>";
 
                                             echo "<td>";
-                                            echo '<a href="' . $Lista_UsuariosApp['RFID'] . '"  class="fa fa-pencil btn btn-info data-togle="modal" data-target="#myModal"> Editar</a>';
+                                            echo '<a href=Admin_ModificarUsuario.php?Usuario=' . $Lista_UsuariosApp['RFID'] . '  class="fa fa-pencil btn btn-info data-togle="modal" data-target="#myModal"> Editar</a>';
                                             echo "</td>";
 
                                             echo "</tr>";

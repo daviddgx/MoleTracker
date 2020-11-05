@@ -12,18 +12,71 @@ if ($_SESSION['Usuario'] == '') {
 include 'Auth.php';
 include 'LQS_EUQ/GuiasTraker.php';
 
+$IDArea =  $_GET["Area"];
+$NombreArea ="";
+$TipoArea ="";
+$EsInicialArea ="";
+$EsFinalArea ="";
+$AreaAnteriorArea ="";
+$AreaSiguienteArea ="";
+$DescripcionArea ="";
+$MinutosMinimosArea ="";
+$MinutosMaximosArea ="";
+
+// obener datos del area
+try {
+
+ $conn  = new PDO('mysql:host='.$servername.';dbname='.$dbname, $username, $password);
+
+
+    //paso 3 hacer la sentencia sql y ejecutarla
+            $sqlDatos = "SELECT * FROM traker_mole.trck_mle_areas where id_Area =$IDArea;";
+            $AreasRegistrada = $conn->query($sqlDatos);
+            if(!$AreasRegistrada)
+            {
+                echo 'Hay un error en la sentencia de SQL: '.$sqlDatos;
+            }else{
+                //paso 4 trer los datos en forma de un arreglo
+                $lista_Area =$AreasRegistrada->fetch(PDO::FETCH_ASSOC);
+                //la variable Lista_Usuaios es la que contiene el resultado de los usuarios
+            }
+
+
+}catch(Exception $ex){
+    echo $ex;
+}
+
+for ($i = 0; $i < $lista_Area; $i++) {
+    $NombreArea = $lista_Area['NOMBRE'];
+
+    $TipoArea =$lista_Area['TIPO_AREA'];
+    $EsInicialArea =$lista_Area['ES_INICIAL'];
+    $EsFinalArea =$lista_Area['ES_FINAL'];
+    $AreaAnteriorArea =$lista_Area['AREA_SIGUIENTE'];
+    $AreaSiguienteArea =$lista_Area['AREA_ANTERIOR'];
+    $DescripcionArea =$lista_Area['DESCRIPCION'];
+    $MinutosMinimosArea =$lista_Area['MINUTOS_MINIMOS'];
+    $MinutosMaximosArea =$lista_Area['MINUTOS_MAXIMOS'];
+
+
+    $lista_Area = $AreasRegistrada->fetch(PDO::FETCH_ASSOC);
+
+}
+
+
 
 //Inicio accones de los botones
 
 if (!empty($_POST['Programar'])) {
-    $RFID = $_POST['form-RFID'];
-    $Usuario = $_POST['form-Usuario'];
-    $Pass = $_POST['form-Pass'];
-    $PassVal = $_POST['form-PassVal'];
     $Nombre = $_POST['form-Nombre'];
-    $Apellido = $_POST['form-Apellido'];
-    $Estatus = $_POST['form-Estatus'];
-
+    $TipoArea = $_POST['form-TipoArea'];
+    $EsFinal = $_POST['form-Final'];
+    $EsInicial = $_POST['form-Inicial'];
+    $AreaSiguente = $_POST['form-AreaSiguente'];
+    $AreaAnterior = $_POST['form-AreaAnterior'];
+    $Descripcion = $_POST['form-Descripcion'];
+    $MinutosMinimos = $_POST['form-MinutosMinimos'];
+    $MinutosMaximos = $_POST['form-MinutosMaximos'];
 
     $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -31,20 +84,14 @@ if (!empty($_POST['Programar'])) {
         die("Error en la conexion: " . $conn->connect_error);
     }
 
-    if(!$Pass == $PassVal){
-        $error = '<div class="alert alert-danger" role="alert"><p><strong>Las contraseñas no son iguales </div>';
-    }else{
-
-
-    $sql = "insert into traker_mole.trkml_usuarios values ('".$RFID."','".$Usuario."','".md5($Pass)."','".$Nombre."','".$Apellido."',4,null,'".$Estatus."')";
+    $sql = "update traker_mole.trck_mle_areas set Nombre = '".$Nombre."', Tipo_Area ='".$TipoArea."', Es_final = '".$EsFinal."', Es_inicial = '".$EsInicial."', Area_Siguiente = '".$AreaSiguente."', Area_Anterior = '".$AreaAnterior."', Descripcion = '".$Descripcion."', Minutos_Minimos = '".$MinutosMinimos."', Minutos_maximos = '".$MinutosMaximos."' where ID_AREA = '".$IDArea."'";
 
     if ($conn->query($sql) === TRUE) {
-        $mensajeExito = '<div class="alert alert-success" role="alert">El registro fue agregado correctamente</div>';
+        $mensajeExito = '<div class="alert alert-success" role="alert">se modifico correctamente</div>';
     } else {
 
-
-        $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos, valide e intente de nuevo </div>';
-    }
+        echo "Error: " . $sql . "<br>" . $conn->error;
+        $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
     }
 
 }
@@ -195,19 +242,19 @@ if (!empty($_POST['Programar'])) {
                                     <b class="">Guias</b> </a>
                             </li>
                             <li>
-                                <a href="Admin_Unidades.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b >Unidades</b>
+                                <a href="Admin_Unidades.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Unidades</b>
                                 </a>
                             </li>
                             <li>
-                                <a href="Admin_Areas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Areas</b>
+                                <a href="Admin_Areas.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Areas</b>
                                 </a>
                             </li>
                             <li>
-                                <a href="Admin_Pilotos.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i>
-                                    <b class="theme_color">Pilotos</b> </a>
+                                <a href="Admin_Pilotos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
+                                    <b>Pilotos</b> </a>
                             </li>
                             <li>
-                                <a href="Admin_Usuarios.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Usuarios</b>
+                                <a href="Registro.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Registro</b>
                                 </a>
                             </li>
 
@@ -222,7 +269,7 @@ if (!empty($_POST['Programar'])) {
             <!-- Inicia la barra de Tutulo en right -->
             <div class="pull-left breadcrumb_admin clear_both">
                 <div class="pull-left page_title theme_color">
-                    <h1>Registro de Pilotos</h1>
+                    <h1>Registro de Áreas</h1>
                     <h2 class="">Ingrese los datos requeridos</h2>
                 </div>
                 <div class="pull-right">
@@ -259,7 +306,7 @@ if (!empty($_POST['Programar'])) {
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12  myform-all" justify-content-center>
-                                <h1><strong>Registro</strong> Piloto nuevo</h1>
+                                <h1><strong>Modificar</strong> área </h1>
                             </div>
 
                         </div>
@@ -269,10 +316,11 @@ if (!empty($_POST['Programar'])) {
                                 <div class="myform-top">
                                     <div class="myform-top-left">
                                         <h3>Registro Online</h3>
-                                        <p>Ingrese la información del nuevo piloto:</p>
+                                        <p>Ingrese la información del área:</p>
                                     </div>
                                     <div class="myform-top-rigth">
-                                        <i class="fa fa-user"></i>
+                                        <i class="fa fa-meteor"></i>
+
 
                                     </div>
 
@@ -286,43 +334,9 @@ if (!empty($_POST['Programar'])) {
                                                 <!-- Componente de Formulario -->
                                                 <div class="form-grup">
                                                     <input required type="text" name="form-Nombre"
-                                                           placeholder="Ingrese el Nombre..."
+                                                           value="<?php echo $NombreArea;?>"
+                                                           placeholder="Nombre del área..."
                                                            class=" form-control" id="form-Nombre">
-                                                </div>
-                                                <!-- Fin Componente de Formulario -->
-                                                <div class="saltito"><h1></h1></div>
-                                                <!-- Componente de Formulario -->
-                                                <div class="form-grup">
-                                                    <input required type="text" name="form-Apellido"
-                                                           placeholder="Ingrese el Apellido..." class=" form-control"
-                                                           id="form-Apellido">
-                                                </div>
-                                                <!-- Fin Componente de Formulario -->
-                                                <div class="saltito"><h1></h1></div>
-                                                <!-- Componente de Formulario -->
-                                                <div class="form-grup">
-                                                    <input required type="text" name="form-Usuario"
-                                                           placeholder="Ingrese nombre de Usuario..." class=" form-control"
-                                                           id="form-Usuario">
-                                                </div>
-                                                <!-- Fin Componente de Formulario -->
-                                            </div>
-
-                                            <div class="col-lg">
-
-                                                <!-- Componente de Formulario -->
-                                                <div class="form-grup">
-                                                    <input required type="password" name="form-Pass"
-                                                           placeholder="Ingrese la Contraseña..." class=" form-control"
-                                                           id="form-Pass">
-                                                </div>
-                                                <!-- Fin Componente de Formulario -->
-                                                <div class="saltito"><h1></h1></div>
-                                                <!-- Componente de Formulario -->
-                                                <div class="form-grup">
-                                                    <input required type="password" name="form-PassVal"
-                                                           placeholder="Repita la Contraseña..." class=" form-control"
-                                                           id="form-PassVal">
                                                 </div>
                                                 <!-- Fin Componente de Formulario -->
                                                 <div class="saltito"><h1></h1></div>
@@ -330,39 +344,129 @@ if (!empty($_POST['Programar'])) {
                                                 <div>
                                                     <select required
                                                             class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched"
-                                                            name="form-Estatus" id="form-Estatus"
+                                                            name="form-TipoArea" id="form-TipoArea"
+
+                                                            ng-model="properties.value"
+                                                            ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
+                                                            ng-required="properties.required"
+                                                            ng-disabled="properties.disabled">
+                                                        <option style="display:none; height:60px;"
+                                                                class="ng-binding">
+                                                            Tipo de Área...
+                                                        </option>
+                                                        <option value="Registro" label="Área de Registro">
+                                                        </option>
+                                                        <option value="Carga" label="Área de Carga">
+                                                        </option>
+                                                        <option value="Verificado" label="Área de verificación de Marchamo">
+                                                        </option>
+
+                                                    </select>
+                                                    </div>
+
+                                                    <!-- Fin Componente de Formulario -->
+                                                <div class="saltito"><h1></h1></div>
+                                                <!-- Componente de Formulario -->
+                                                <div>
+                                                    <select required
+                                                            class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched"
+                                                            name="form-Inicial" id="form-Inicial"
                                                             ng-model="properties.value"
                                                             ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
                                                             ng-required="properties.required"
                                                             ng-disabled="properties.disabled">
                                                         <option style="display:none; height:60px;" value=""
                                                                 class="ng-binding">
-                                                            Estatus del piloto...
+                                                            Es Inicial...
                                                         </option>
-                                                        <option value="Activo" label="Activo">
+                                                        <option value="Si" label="Si">
                                                         </option>
-                                                        <option value="Desactivado" label="Desavtivado">
-                                                        </option>
+                                                        <option value="No" label="No">
                                                     </select>
+                                                </div>
+                                                <!-- Fin Componente de Formulario -->
+                                                <div class="saltito"><h1></h1></div>
+                                                <!-- Componente de Formulario -->
+                                                <div>
+                                                    <select required
+                                                            class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched"
+                                                            name="form-Final" id="form-Final"
+                                                            ng-model="properties.value"
+                                                            ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
+                                                            ng-required="properties.required"
+                                                            ng-disabled="properties.disabled">
+                                                        <option style="display:none; height:60px;" value=""
+                                                                class="ng-binding">
+                                                            Es Final...
+                                                        </option>
+                                                        <option value="Si" label="Si">
+                                                        </option>
+                                                        <option value="No" label="No">
+                                                    </select>
+                                                </div>
+                                                <!-- Fin Componente de Formulario -->
+                                                    <div class="saltito"><h1></h1></div>
+                                                <!-- Componente de Formulario -->
+                                                <div class="form-grup">
+                                                    <input required type="text" name="form-AreaAnterior"
+                                                           value="<?php echo $AreaAnteriorArea;?>"
+                                                           placeholder="Área Antereor..." class=" form-control"
+                                                           id="form-AreaAnterior">
+                                                </div>
+                                                <!-- Fin Componente de Formulario -->
+                                                <div class="saltito"><h1></h1></div>
+                                            </div>
+
+                                            <div class="col-lg">
+
+                                                <!-- Componente de Formulario -->
+                                                <div class="form-grup">
+                                                    <input required type="text" name="form-AreaSiguente"
+                                                           value="<?php echo $AreaSiguienteArea;?>"
+                                                           placeholder="Área Siguente..." class=" form-control"
+                                                           id="form-AreaSiguente">
+                                                </div>
+                                                <!-- Fin Componente de Formulario -->
+                                                <div class="saltito"><h1></h1></div>
+
+                                                    <!-- Componente de Formulario -->
+                                                    <div class="form-grup">
+                                                        <input required type="text" name="form-Descripcion"
+                                                               value="<?php echo $DescripcionArea;?>"
+                                                               placeholder="Descripción del área..."
+                                                               class=" form-control" id="form-Descripcion">
+                                                    </div>
+                                                    <!-- Fin Componente de Formulario -->
+                                                    <div class="saltito"><h1></h1></div>
+                                                    <!-- Componente de Formulario -->
+                                                    <div class="form-grup">
+                                                        <input required input type="text" name="form-MinutosMinimos"
+                                                               value="<?php echo $MinutosMinimosArea;?>"
+                                                               placeholder="Minutos Minimos..." class=" form-control"
+                                                               id="form-MinutosMinimos">
+                                                    </div>
+                                                    <!-- Fin Componente de Formulario -->
+                                                    <div class="saltito"><h1></h1></div>
+                                                <!-- Componente de Formulario -->
+                                                <div class="form-grup">
+                                                    <input required input type="text" name="form-MinutosMaximos"
+                                                           value="<?php echo $MinutosMaximosArea;?>"
+                                                           placeholder="Minutos Máximos..." class=" form-control"
+                                                           id="form-MinutosMaximos">
+                                                </div>
+                                                <!-- Fin Componente de Formulario -->
+                                                <div class="saltito"><h1></h1></div>
+
                                                 </div>
                                             </div>
                                             <!-- Fin Division en columnas -->
-                                            <div class="saltito"><h1></h1></div>
-                                            <!-- Componente de Formulario -->
-                                            <div>
-                                                <input required type="text" name="form-RFID"
-                                                       placeholder="RFID..." class=" form-control"
-                                                       id="form-RFID">
-                                            </div>
-                                            <!-- Fin Componente de Formulario -->
 
                                             <div class="saltito"><h1></h1></div>
                                             <div data-effect="flip" class="effect-button"><input type="submit"
                                                                                                  name="Programar"
-                                                                                                 value="Programar"
+                                                                                                 value="Registrar"
                                                                                                  class="effect-button">
                                             </div>
-                                            <!-- <input type="submit" name="submit" class="mybtn" value="Registrar"></input> -->
 
                                     </form>
 
@@ -400,7 +504,7 @@ if (!empty($_POST['Programar'])) {
 
             <script>
                 function RegresarGuias() {
-                    location.href = "http://localhost:63342/MoleTracker/Admin_Pilotos.php";
+                    location.href = "http://localhost:63342/MoleTracker/Admin_Areas.php";
                 }
             </script>
 

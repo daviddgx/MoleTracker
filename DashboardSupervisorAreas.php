@@ -22,6 +22,7 @@ include 'LQS_EUQ/RegistrosAreas.php';
 $timestamp = date("Y-m-d H:i:s");
 $error = "";
 $mensajeExito = '';
+$Accion ="";
 //Accion a ejecutar
 if(!empty($_POST['Validar'])){
     $RFIDRegistro = $_POST['RFIDLog'];

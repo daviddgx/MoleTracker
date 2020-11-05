@@ -255,7 +255,8 @@ include 'LQS_EUQ/AreasRegistradas.php';
                                     <th>Es Inicial</th>
                                     <th>Area Siguiente</th>
                                     <th>Area Anterior</th>
-                                    <th>Detalles</th>
+
+
                                     <th>Editar</th>
                                     </thead>
                                     <tbody>
@@ -285,11 +286,9 @@ include 'LQS_EUQ/AreasRegistradas.php';
                                         echo $lista_Areas['AREA_ANTERIOR'];
                                         echo "</td>";
 
+
                                         echo "<td>";
-                                        echo '<a href="' . $lista_Areas['ID_AREA'] . '"  class="fa fa-info-circle btn btn-primary data-togle="modal" data-target="#myModal"> Detalles</a>';
-                                        echo "</td>";
-                                        echo "<td>";
-                                        echo '<a href="' . $lista_Areas['ID_AREA'] . '"  class="fa fa-pencil-alt btn btn-secondary data-togle="modal" data-target="#myModal"> Editar</a>';
+                                        echo '<a href=Admin_ModificarArea.php?Area=' . $lista_Areas['ID_AREA'] . '  class="fa fa-pencil-alt btn btn-secondary data-togle="modal" data-target="#myModal"> Editar</a>';
                                         echo "</td>";
                                         echo "</tr>";
                                         $lista_Areas = $AreasRegistradas->fetch(PDO::FETCH_ASSOC);

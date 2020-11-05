@@ -288,7 +288,7 @@ include 'LQS_EUQ/UnidadesRegistradas.php';
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo '<a href="' . $lista_Unidades['ID_VEHICULO'] . '"  class="fa fa-pen btn btn-info data-togle="modal" data-target="#myModal"></a>';
+                                        echo '<a href=Admin_ModificarUnidad.php?Unidad='.$lista_Unidades['ID_VEHICULO'].'&Marca='.$lista_Unidades['MARCA'].'&Modelo='.$lista_Unidades['MODELO'].'&Linea='.$lista_Unidades['LINEA'].'&Tipo='.$lista_Unidades['TIPO'].'&Velocidad='.$lista_Unidades['VELOCIDAD'].'&Capacidad='.$lista_Unidades['CAPACIDAD'].'&Placa='.$lista_Unidades['PLACA'].'  class="fa fa-pen btn btn-info" ></a>';
                                         echo "</td>";
 
                                         echo "</tr>";

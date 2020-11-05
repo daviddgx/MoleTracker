@@ -12,6 +12,44 @@ if ($_SESSION['Usuario'] == '') {
 include 'Auth.php';
 include 'LQS_EUQ/GuiasTraker.php';
 
+$IDPiloto =  $_GET["Piloto"];
+
+$NombrePiloto ="";
+$ApellidoPiloto ="";
+$UsuarioPiloto ="";
+
+// obener datos del Piloto
+try {
+
+    $conn  = new PDO('mysql:host='.$servername.';dbname='.$dbname, $username, $password);
+
+
+    //paso 3 hacer la sentencia sql y ejecutarla
+    $sqlDatos = "SELECT * FROM traker_mole.trkml_usuarios where rfid = '".$IDPiloto."';";
+    $PiltoRegistrado = $conn->query($sqlDatos);
+    if(!$PiltoRegistrado)
+    {
+        echo 'Hay un error en la sentencia de SQL: '.$sqlDatos;
+    }else{
+        //paso 4 trer los datos en forma de un arreglo
+        $lista_Piloto =$PiltoRegistrado->fetch(PDO::FETCH_ASSOC);
+        //la variable Lista_Usuaios es la que contiene el resultado de los usuarios
+    }
+
+
+}catch(Exception $ex){
+    echo $ex;
+}
+
+for ($i = 0; $i < $lista_Piloto; $i++) {
+
+
+    $NombrePiloto = $lista_Piloto['Nombre'];
+    $ApellidoPiloto = $lista_Piloto['Apellido'];
+    $UsuarioPiloto = $lista_Piloto['Usuario'];
+
+    $lista_Piloto = $PiltoRegistrado->fetch(PDO::FETCH_ASSOC);
+}
 
 //Inicio accones de los botones
 
@@ -36,10 +74,10 @@ if (!empty($_POST['Programar'])) {
     }else{
 
 
-    $sql = "insert into traker_mole.trkml_usuarios values ('".$RFID."','".$Usuario."','".md5($Pass)."','".$Nombre."','".$Apellido."',4,null,'".$Estatus."')";
+    $sql = "   update traker_mole.trkml_usuarios set Nombre = '".$Nombre."', Apellido  = '".$Apellido."', Pass = '".md5($Pass)."', RFID = '".$RFID."'  where rfid = '".$IDPiloto."';";
 
     if ($conn->query($sql) === TRUE) {
-        $mensajeExito = '<div class="alert alert-success" role="alert">El registro fue agregado correctamente</div>';
+        $mensajeExito = '<div class="alert alert-success" role="alert">El registro fue Actualizado correctamente</div>';
     } else {
 
 
@@ -259,7 +297,7 @@ if (!empty($_POST['Programar'])) {
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12  myform-all" justify-content-center>
-                                <h1><strong>Registro</strong> Piloto nuevo</h1>
+                                <h1><strong>Modificar</strong> Piloto </h1>
                             </div>
 
                         </div>
@@ -269,7 +307,7 @@ if (!empty($_POST['Programar'])) {
                                 <div class="myform-top">
                                     <div class="myform-top-left">
                                         <h3>Registro Online</h3>
-                                        <p>Ingrese la información del nuevo piloto:</p>
+                                        <p>Ingrese la información del piloto:</p>
                                     </div>
                                     <div class="myform-top-rigth">
                                         <i class="fa fa-user"></i>
@@ -286,6 +324,7 @@ if (!empty($_POST['Programar'])) {
                                                 <!-- Componente de Formulario -->
                                                 <div class="form-grup">
                                                     <input required type="text" name="form-Nombre"
+                                                           value="<?php echo $NombrePiloto;?>"
                                                            placeholder="Ingrese el Nombre..."
                                                            class=" form-control" id="form-Nombre">
                                                 </div>
@@ -294,6 +333,7 @@ if (!empty($_POST['Programar'])) {
                                                 <!-- Componente de Formulario -->
                                                 <div class="form-grup">
                                                     <input required type="text" name="form-Apellido"
+                                                           value="<?php echo $ApellidoPiloto;?>"
                                                            placeholder="Ingrese el Apellido..." class=" form-control"
                                                            id="form-Apellido">
                                                 </div>
@@ -302,6 +342,7 @@ if (!empty($_POST['Programar'])) {
                                                 <!-- Componente de Formulario -->
                                                 <div class="form-grup">
                                                     <input required type="text" name="form-Usuario"
+                                                           value="<?php echo $UsuarioPiloto;?>"
                                                            placeholder="Ingrese nombre de Usuario..." class=" form-control"
                                                            id="form-Usuario">
                                                 </div>
@@ -351,6 +392,7 @@ if (!empty($_POST['Programar'])) {
                                             <!-- Componente de Formulario -->
                                             <div>
                                                 <input required type="text" name="form-RFID"
+                                                       value="<?php echo $IDPiloto;?>"
                                                        placeholder="RFID..." class=" form-control"
                                                        id="form-RFID">
                                             </div>

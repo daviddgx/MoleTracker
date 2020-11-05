@@ -6,7 +6,7 @@ try{
     $conn  = new PDO('mysql:host='.$servername.';dbname='.$dbname, $username, $password);
 
             //paso 3 hacer la sentencia sql y ejecutarla
-            $sqlDatos = "SELECT * FROM traker_mole.trkml_usuarios ";
+            $sqlDatos = "SELECT * FROM traker_mole.trkml_usuarios where Roll_Usuario not in(4)";
             $ejecutar_sentencia = $conn->query($sqlDatos);
             if(!$ejecutar_sentencia)
             {
