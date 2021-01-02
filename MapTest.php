@@ -199,9 +199,7 @@ getLatLon();
 
 
 
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMS9Z53e5o37lHssInOqrhm3I87WpYxZg&callback=initMap">
-    </script>
+   
 
 
    <script src="js/jquery-2.1.0.js"></script>
