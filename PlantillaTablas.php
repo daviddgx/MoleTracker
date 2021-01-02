@@ -4,11 +4,11 @@
                        <div class= "myform-all Color_Claro">
                         <!-- Inicia Tabla de Usuarios; -->
                         <br>
-                        <h1 class="Titulos">Guias Entregadas</h1>
+                        <h1 class="Titulos">Guías Entregadas</h1>
                         <form role="form" action="" method="post" class="">
                         <table>
                                     <tr>
-                                        <th>No. Guia</th>
+                                        <th>No. Guía</th>
                                         <th>Piloto</th>
                                         <th>Placa del Camion</th>
                                         <th>Capacidad de Carga</th>

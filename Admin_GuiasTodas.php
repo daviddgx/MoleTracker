@@ -183,7 +183,7 @@ include 'LQS_EUQ/GuiasTrakerAll.php';
             <!-- Inicia la barra de Tutulo en right -->
             <div class="pull-left breadcrumb_admin clear_both">
                 <div class="pull-left page_title theme_color">
-                    <h1>Administrador de Guias de Carga</h1>
+                    <h1>Administrador de Guías de Carga</h1>
                     <h2 class="">Panel de Administración...</h2>
                 </div>
                 <div class="pull-right">
@@ -235,11 +235,11 @@ include 'LQS_EUQ/GuiasTrakerAll.php';
 
                                     <button class="btn btn-success my-2 my-sm-0" style="margin-right: 10px;"
                                             type="button"
-                                            onclick="CargarNuevaGuia()">Nueva Guia
+                                            onclick="CargarNuevaGuia()">Nueva Guía
                                     </button>
                                     <button class="btn btn-info my-2 my-sm-0" style="margin-right: 10px;" type="button"
                                             onclick="CargarGuias()">
-                                        Visualizar Guias En proceso y terminadas
+                                        Visualizar Guías En proceso y terminadas
                                     </button>
                                 </form>
                             </div>
@@ -253,13 +253,13 @@ include 'LQS_EUQ/GuiasTrakerAll.php';
                             <div class="myform-all Color_Claro">
                                 <!-- Inicia Tabla de Usuarios; -->
                                 <br>
-                                <h1 class="Titulos">Administración de Guias</h1>
+                                <h1 class="Titulos">Administración de Guías</h1>
                                 <form role="form" action="" method="post" class="">
                                     <table id="example" class="table table-striped  " cellspacing="0" width="100%">
                                         <thead>
 
 
-                                        <th>No. Guia SAPsap</th>
+                                        <th>No. Guía SAPsap</th>
                                         <th>Piloto</th>
                                         <th>Placa del Camion</th>
                                         <th>Capacidad de Carga</th>

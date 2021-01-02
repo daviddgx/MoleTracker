@@ -142,13 +142,6 @@ registrar duplipados
         } catch (Exception $ex) {
         }
 
-
-
-
-
-
-
-
         /* inicia codigo de referencia
             // Obtencion de datos
         $LClave = md5($LClave);
@@ -227,15 +220,12 @@ registrar duplipados
     <link href="plugins/morris/morris.css" rel="stylesheet" />
     <link rel="icon" href="imagenes/LOGOTKM2.PNG" width="auto" height="30">
     <!-- MDBootstrap Datatables  -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"><script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/custom2.css">
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
+
 
     <style>
         body {
@@ -250,6 +240,9 @@ registrar duplipados
 
         #map {
             height: 100%;
+        }
+        .table {
+            color: #fff;
         }
     </style>
 
@@ -367,16 +360,16 @@ registrar duplipados
                                     <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>DashBoard</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guias Entregadas</b> </a>
+                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guías Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Planificadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
+                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Retrasadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guia Activa</b> </a>
+                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guía Activa</b> </a>
                                 </li>
 
                             </ul>
@@ -390,7 +383,7 @@ registrar duplipados
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Guia Activa...</h1>
+                        <h1>Guía Activa...</h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -425,7 +418,7 @@ registrar duplipados
                 <div class="hide" id="Contenido">
                 <br>
                 <div class="container" id="Mapa">
-                    <!-- Inicia Componente Registro Actividad -->
+               <!--      Inicia Componente Registro Actividad
                     <div class="myform-all Color_Claro">
 
                         <div class="my-content formulario">
@@ -442,7 +435,7 @@ registrar duplipados
 
                     </div>
                 </div>
-                <!-- Finaliza Componente Registro actividad -->
+                 Finaliza Componente Registro actividad -->
 
                 <br>
                 <!-- Inicia La seccion de usuarios -->
@@ -450,11 +443,11 @@ registrar duplipados
                     <div class="myform-all Color_Claro">
                         <!-- Inicia Tabla de Usuarios; -->
                         <br></br>
-                        <h1 class="Titulos">Guia actualmente Activa : <?php if($_SESSION["GuiaSAPActiva"] == '' ){echo 'Ninguna Guia activa'; }else{ echo $_SESSION["GuiaSAPActiva"]; } ?> </h1>
+                        <h1 class="Titulos">Guia actualmente Activa : <?php if($_SESSION["GuiaSAPActiva"] == '' ){echo 'Ningúna Guía activa'; }else{ echo $_SESSION["GuiaSAPActiva"]; } ?> </h1>
                         <form role="form" action="" method="post" class="">
                             <table class="table  table-bordered">
                                 <tr>
-                                    <th>No. Guia</th>
+                                    <th>No. Guía</th>
                                     <th>Guia SAP</th>
                                     <th>Piloto</th>
                                     <th>Placa del Camion</th>
@@ -473,7 +466,7 @@ registrar duplipados
                                     echo "</td>";
 
                                     echo "<td>";
-                                    $_SESSION['GuiaSAPActiva'] = $lista_Guias['GuiaSAP'];
+
                                     echo $lista_Guias['GuiaSAP'];
                                     echo "</td>";
 
@@ -581,13 +574,13 @@ registrar duplipados
                         <br>
 
                         <!-- Button trigger modal -->
-                        <button type="button " class="btn btn-secondary btn-lg btn-block" data-toggle="modal" data-target="#exampleModalCenter">
+                        <button type="button " class="btn btn-secondary btn-lg btn-block"data-dismiss="modal" data-backdrop="false" data-toggle="modal" data-target="#exampleModalCenter">
                             Abrir Mapa
                         </button>
 
 
                         <!-- Modal -->
-                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div class="modal " id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">

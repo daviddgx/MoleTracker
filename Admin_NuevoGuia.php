@@ -35,7 +35,7 @@ if (!empty($_POST['Programar'])) {
         die("Error en la conexion: " . $conn->connect_error);
     }
 
-    $sql = "INSERT INTO `traker_mole`.`trck_mle_guias` (`GuiaSAP`, `Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('" . $GuiaSAP . "','" . $Piloto . "','" . $DPIPiloto . "','" . $PlacaCamion . "','" . $TipoCamion . "','" . $Rampa . "','" . $Destino . "','" . $FechaCarga . "','" . $FechaEntrega . "','" . $PesoBruto . "','" . $RFID . "','Planificada')";
+    $sql = "INSERT INTO `traker_mole`.`trck_mle_guias` (`GuiaSAP`, `Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`,`Usuario_Piloto`) VALUES ('" . $GuiaSAP . "','" . $Piloto . "','" . $DPIPiloto . "','" . $PlacaCamion . "','" . $TipoCamion . "','" . $Rampa . "','" . $Destino . "','" . $FechaCarga . "','" . $FechaEntrega . "','" . $PesoBruto . "','" . $RFID . "','Planificada',(SELECT usuario FROM traker_mole.trkml_usuarios where RFID= '".$RFID."'))";
     //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
 
     if ($conn->query($sql) === TRUE) {
@@ -221,7 +221,7 @@ if (!empty($_POST['Programar'])) {
             <!-- Inicia la barra de Tutulo en right -->
             <div class="pull-left breadcrumb_admin clear_both">
                 <div class="pull-left page_title theme_color">
-                    <h1>Programación de Guias de Carga</h1>
+                    <h1>Programación de Guías de Carga</h1>
                     <h2 class="">Ingrese los datos requeridos</h2>
                 </div>
                 <div class="pull-right">
@@ -258,7 +258,7 @@ if (!empty($_POST['Programar'])) {
                     <div class="container">
                         <div class="row">
                             <div class="col-sm-12  myform-all" justify-content-center>
-                                <h1><strong>Programación</strong> Guias de Carga</h1>
+                                <h1><strong>Programación</strong> Guías de Carga</h1>
 
                             </div>
 
@@ -286,7 +286,7 @@ if (!empty($_POST['Programar'])) {
                                             <div class="col-lg">
                                                 <!-- Componente de Formulario -->
                                                 <div class="form-grup">
-                                                    <input type="text" name="form-GUIASAP" placeholder="No Guia SAP..."
+                                                    <input type="text" name="form-GUIASAP" placeholder="No Guía SAP..."
                                                            class=" form-control" id="form-GUIASAP">
                                                 </div>
                                                 <!-- Fin Componente de Formulario -->

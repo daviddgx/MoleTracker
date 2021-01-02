@@ -135,7 +135,7 @@ if ($_SESSION['Usuario'] == '') {
                                     <a href="DashboardAdministradorGuias.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b >ADMINISTRACION</b> </a>
                                 </li>
                                 <li>
-                                    <a href="Admin_Guias.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guias</b> </a>
+                                    <a href="Admin_Guias.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guías</b> </a>
                                 </li>
                                 <li>
                                     <a href="Admin_Unidades.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Unidades</b> </a>
@@ -161,7 +161,7 @@ if ($_SESSION['Usuario'] == '') {
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Administrador de Guias de Carga</h1>
+                        <h1>Administrador de Guías de Carga</h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">

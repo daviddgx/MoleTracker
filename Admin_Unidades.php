@@ -152,7 +152,7 @@ include 'LQS_EUQ/UnidadesRegistradas.php';
                                             class="fa fa-circle"></i> <b>ADMINISTRACION</b> </a>
                             </li>
                             <li>
-                                <a href="Admin_Guias.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias</b>
+                                <a href="Admin_Guias.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías</b>
                                 </a>
                             </li>
                             <li>

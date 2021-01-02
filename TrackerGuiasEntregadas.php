@@ -32,7 +32,6 @@ if ($_SESSION['Usuario'] == '') {
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
     <style>
         body {
@@ -142,13 +141,13 @@ if ($_SESSION['Usuario'] == '') {
                                             Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Planificadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
+                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Retrasadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guia Activa</b> </a>
+                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guía Activa</b> </a>
                                 </li>
                             </ul>
                         </li>
@@ -162,7 +161,7 @@ if ($_SESSION['Usuario'] == '') {
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Guias Entregadas...</h1>
+                        <h1>Guías Entregadas...</h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -203,14 +202,14 @@ if ($_SESSION['Usuario'] == '') {
                         <div class="myform-all Color_Claro" style="font-size: 15px;">
                             <!-- Inicia Tabla de Usuarios; -->
                             <br>
-                            <h1 class="Titulos">Guias Entregadas</h1>
+                            <h1 class="Titulos">Guías Entregadas</h1>
                             <form role="form" action="" method="post" class="">
                                 <table id="example" class="table table-striped  " cellspacing="0" width="100%">
 
 
                                         <thead>
                                         <tr>
-                                        <th>No. Guia</th>
+                                        <th>No. Guía</th>
                                         <th>Guia SAP</th>
                                         <th>Piloto</th>
                                         <th>Placa Camion</th>

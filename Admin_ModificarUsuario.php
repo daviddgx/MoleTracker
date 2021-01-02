@@ -443,7 +443,7 @@ if (!empty($_POST['Programar'])) {
                                             <div class="saltito"><h1></h1></div>
                                             <div data-effect="flip" class="effect-button"><input type="submit"
                                                                                                  name="Programar"
-                                                                                                 value="Programar"
+                                                                                                 value="Guardar"
                                                                                                  class="effect-button">
                                             </div>
                                             <!-- <input type="submit" name="submit" class="mybtn" value="Registrar"></input> -->

@@ -131,16 +131,16 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                                     <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>DashBoard</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guias Entregadas</b> </a>
+                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle "></i> <b>Guías Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Planificadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guias Retrasadas</b> </a>
+                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">Guías Retrasadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guia Activa</b> </a>
+                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guía Activa</b> </a>
                                 </li>
                             </ul>
                         </li>
@@ -153,7 +153,7 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Guias Retrasadas...</h1>
+                        <h1>Guías Retrasadas...</h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -195,12 +195,12 @@ include 'LQS_EUQ/GuiasRetrasadas.php';
                         <div class="myform-all Color_Claro">
                             <!-- Inicia Tabla de Usuarios; -->
                             <br></br>
-                            <h1 class="Titulos">Guias Retrasadas</h1>
+                            <h1 class="Titulos">Guías Retrasadas</h1>
                             <form role="form" action="" method="post" class="">
                                 <table id="example" class="table table-striped  " cellspacing="0" width="100%">
 
                                         <thead>
-                                        <th>No. Guia</th>
+                                        <th>No. Guía</th>
                                         <th>Piloto</th>
                                         <th>Placa del Camion</th>
                                         <th>Capacidad de Carga</th>

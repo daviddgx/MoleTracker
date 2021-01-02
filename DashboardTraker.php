@@ -1,12 +1,21 @@
 <?php
 session_start();
 include 'Auth.php';
+include 'LQS_EUQ/GuiaActiva.php';
 $fecha = date("d") . '-' . date("m") . '-' . date("Y");
 
 if ($_SESSION['Usuario'] == '') {
     header('Location: 505.html');
 } else {
 }
+
+
+// Agregar a la variable se sesion el numero de Guia Activa
+
+
+
+
+$_SESSION['GuiaSAPActiva']= $lista_Guias['GuiaSAP'];
 
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -133,16 +142,16 @@ if ($_SESSION['Usuario'] == '') {
                                     <a href="DashboardTraker.php"> <span>&nbsp;</span> <i class="fa fa-circle theme_color"></i> <b class="theme_color">DashBoard</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Entregadas</b> </a>
+                                    <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Entregadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Planificadas</b> </a>
+                                    <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Planificadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guias Retrasadas</b> </a>
+                                    <a href="TrackerAtrasos.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guías Retrasadas</b> </a>
                                 </li>
                                 <li>
-                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guia Activa</b> </a>
+                                    <a href="TrackerGuiaActiva.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i> <b>Guía Activa</b> </a>
                                 </li>
                             </ul>
                         </li>
@@ -257,7 +266,7 @@ if ($_SESSION['Usuario'] == '') {
                                 <div class="information red_info">
                                     <div class="information_inner">
                                         <div class="info red_symbols"><i class="fa  fa-files-o icon"></i></div>
-                                        <span>Guias Entregadas</span>
+                                        <span>Guías Entregadas</span>
                                         <!-- Consulta de Votos y muestra el valor -->
                                         <?php
 

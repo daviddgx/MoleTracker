@@ -23,6 +23,8 @@ if (!empty($_POST['Programar'])) {
     $Nombre = $_POST['form-Nombre'];
     $Apellido = $_POST['form-Apellido'];
     $Estatus = $_POST['form-Estatus'];
+    $Roll = $_POST['form-Roll'];
+    $Area = $_POST['form-Area'];
 
 
     $conn = new mysqli($servername, $username, $password, $dbname);
@@ -36,7 +38,7 @@ if (!empty($_POST['Programar'])) {
     } else {
 
 
-        $sql = "insert into traker_mole.trkml_usuarios values ('" . $RFID . "','" . $Usuario . "','" . md5($Pass) . "','" . $Nombre . "','" . $Apellido . "',4,null,'" . $Estatus . "')";
+        $sql = "insert into traker_mole.trkml_usuarios values ('" . $RFID . "','" . $Usuario . "','" . md5($Pass) . "','" . $Nombre . "','" . $Apellido . "','".$Roll."','".$Area."','" . $Estatus . "')";
 
         if ($conn->query($sql) === TRUE) {
             $mensajeExito = '<div class="alert alert-success" role="alert">El registro fue agregado correctamente</div>';
@@ -358,7 +360,7 @@ if (!empty($_POST['Programar'])) {
                                                 <div>
                                                     <select required
                                                             class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched"
-                                                            name="form-Estatus" id="form-Estatus"
+                                                            name="form-Roll" id="form-Roll"
                                                             ng-model="properties.value"
                                                             ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
                                                             ng-required="properties.required"
@@ -367,9 +369,9 @@ if (!empty($_POST['Programar'])) {
                                                                 class="ng-binding">
                                                             Roll...
                                                         </option>
-                                                        <option value="Activo" label="Activo">
+                                                        <option value="2" label="Administrador">
                                                         </option>
-                                                        <option value="Desactivado" label="Desavtivado">
+                                                        <option value="3" label="Supervisor de Area">
                                                         </option>
                                                     </select>
                                                 </div>
@@ -377,23 +379,11 @@ if (!empty($_POST['Programar'])) {
                                                 <!-- Fin Division en columnas -->
                                                 <div class="saltito"><h1></h1></div>
                                                 <!-- Componente de Formulario -->
-                                                <div>
-                                                    <select required
-                                                            class="funy form-control ng-pristine ng-valid ng-valid-required ng-touched"
-                                                            name="form-Estatus" id="form-Estatus"
-                                                            ng-model="properties.value"
-                                                            ng-options="ctrl.getValue(option) as (ctrl.getLabel(option) | uiTranslate) for option in properties.availableValues"
-                                                            ng-required="properties.required"
-                                                            ng-disabled="properties.disabled">
-                                                        <option style="display:none; height:60px;" value=""
-                                                                class="ng-binding">
-                                                            Area...
-                                                        </option>
-                                                        <option value="Activo" label="Activo">
-                                                        </option>
-                                                        <option value="Desactivado" label="Desavtivado">
-                                                        </option>
-                                                    </select>
+                                                <div class="form-grup">
+                                                    <input required type="text" name="form-Area"
+
+                                                           placeholder="Area..." class=" form-control"
+                                                           id="form-PassVal">
                                                 </div>
                                                 <div class="saltito"><h1></h1></div>
 
@@ -410,7 +400,7 @@ if (!empty($_POST['Programar'])) {
                                             <div class="saltito"><h1></h1></div>
                                             <div data-effect="flip" class="effect-button"><input type="submit"
                                                                                                  name="Programar"
-                                                                                                 value="Programar"
+                                                                                                 value="Guardar"
                                                                                                  class="effect-button">
                                             </div>
                                             <!-- <input type="submit" name="submit" class="mybtn" value="Registrar"></input> -->

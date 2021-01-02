@@ -253,6 +253,7 @@ include 'LQS_EUQ/UsuariosRegistrados.php';
                                         <th>Nombre</th>
                                         <th>Apellido</th>
                                         <th>Roll</th>
+                                        <th>Area</th>
                                         <th>Nombre de Usuario</th>
                                         <th>Estatus</th>
                                         <th>Editar</th>
@@ -275,6 +276,10 @@ include 'LQS_EUQ/UsuariosRegistrados.php';
 
                                             echo "<td>";
                                             echo $Lista_UsuariosApp['Roll_Usuario'];
+                                            echo "</td>";
+
+                                            echo "<td>";
+                                            echo $Lista_UsuariosApp['Id_Area'];
                                             echo "</td>";
 
                                             echo "<td>";

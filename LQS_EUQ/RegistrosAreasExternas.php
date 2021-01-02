@@ -8,7 +8,7 @@ try{
 
 
             //paso 3 hacer la sentencia sql y ejecutarla
-            $sqlDatos = "SELECT Nombre,Apellido,id,Placa,Motivo,Hora FROM traker_mole.trck_mle_reg_externos where fecha = '".$_SESSION['FechaTrabajo']."' and Area = '".$_SESSION['Area']."'" ;
+            $sqlDatos = "SELECT * FROM traker_mole.trck_mle_reg_externos where fecha = '".$_SESSION['FechaTrabajo']."' and Area = '".$_SESSION['Area']."'" ;
 
             $ejecutar_sentenciaRegistrosExternos = $conn->query($sqlDatos);
             if(!$ejecutar_sentenciaRegistrosExternos)
@@ -28,7 +28,7 @@ try{
 try{
 
     //paso 3 hacer la sentencia sql y ejecutarla
-    $sqlDatos = "SELECT Nombre,Apellido,id,Placa,Motivo,Hora FROM traker_mole.trck_mle_reg_externos where Area = '".$_SESSION['Area']."'" ;
+    $sqlDatos = "SELECT * FROM traker_mole.trck_mle_reg_externos where Area = '".$_SESSION['Area']."'" ;
 
     $ejecutar_sentenciaRegistrosExternos_His = $conn->query($sqlDatos);
     if(!$ejecutar_sentenciaRegistrosExternos_His)

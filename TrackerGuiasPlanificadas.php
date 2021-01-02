@@ -203,7 +203,7 @@ if (!empty($_POST['RegistrarInicio'])) {
                             </li>
                             <li>
                                 <a href="TrackerGuiasEntregadas.php"> <span>&nbsp;</span> <i class="fa fa-circle"></i>
-                                    <b>Guias Entregadas</b> </a>
+                                    <b>Guías Entregadas</b> </a>
                             </li>
                             <li>
                                 <a href="TrackerGuiasPlanificadas.php"> <span>&nbsp;</span> <i
@@ -270,7 +270,7 @@ if (!empty($_POST['RegistrarInicio'])) {
                             <!--/calendar end-->
                         </div>
                         <br>
-                        <h1 class="Titulos">Guias Planificadas para <?php echo $_SESSION['Usuario']; ?></h1>
+                        <h1 class="Titulos">Guías Planificadas para <?php echo $_SESSION['Usuario']; ?></h1>
                         <div class="saltito"><h1></h1></div>
                         <div> <?php echo $error . $mensajeExito; ?></div>
                         <br>
@@ -279,7 +279,7 @@ if (!empty($_POST['RegistrarInicio'])) {
                                 <thead>
 
 
-                                <th>No. Guia SAP</th>
+                                <th>No. Guía SAP</th>
                                 <th>Piloto</th>
                                 <th>Placa del Camion</th>
                                 <th>Capacidad de Carga</th>

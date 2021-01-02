@@ -230,7 +230,7 @@ if(d.valant != d.value){
                                                             Tipo de Usuario...
                                                         </option>
                                                             <option value="Conductor" label="Conductor">Conductor</option>
-                                                            <option value="Administrador de Guias" label="Administrador de Guias">Administrador de Guias</option>
+                                                            <option value="Administrador de Guías" label="Administrador de Guias">Administrador de Guias</option>
                                                             <option value="Area Generica" label="Area Generica">Area Generica</option>
                                                             <option value="Traker" label="Traker">Traker</option>
                                                            

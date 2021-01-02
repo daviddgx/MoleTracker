@@ -258,7 +258,7 @@ $timestamp = date("Y-m-d H:i:s");
             <!-- Inicia la barra de Tutulo en right -->
             <div class="pull-left breadcrumb_admin clear_both">
                 <div class="pull-left page_title theme_color">
-                    <h1>Administrador de Guias de Carga...</h1>
+                    <h1>Administrador de Guías de Carga...</h1>
                     <h2 class="">Panel de Administración...</h2>
                 </div>
                 <div class="pull-right">
@@ -312,10 +312,10 @@ $timestamp = date("Y-m-d H:i:s");
                             <form class="form-inline my-2 my-lg-0">
 
                                 <button class="fa fa-passport btn btn-success my-2 my-sm-0" style="margin-right: 10px;"
-                                        type="button" onclick="CargarNuevaGuia()"> Nueva Guia
+                                        type="button" onclick="CargarNuevaGuia()"> Nueva Guía
                                 </button>
                                 <button class="fa fa-binoculars  btn btn-info my-2 my-sm-0" style="margin-right: 10px;"
-                                        type="button" onclick="CargarGuia()"> Visualizar Todas las Guias
+                                        type="button" onclick="CargarGuia()"> Visualizar Todas las Guías
                                 </button>
                             </form>
                         </div>
@@ -328,7 +328,7 @@ $timestamp = date("Y-m-d H:i:s");
 
                         <div class="my-content formulario" style="text-align: center">
 
-                            <h1><strong>Detalles de </strong> Guia</h1>
+                            <h1><strong>Detalles de </strong> Guía</h1>
 
                         </div>
                     </div>
@@ -341,7 +341,7 @@ $timestamp = date("Y-m-d H:i:s");
                         <div class="myform-all Color_Claro">
                             <!-- Inicia Tabla de Usuarios; -->
                             <br></br>
-                            <h1 class="Titulos">Resumen de la Guia</h1>
+                            <h1 class="Titulos">Resumen de la Guía</h1>
 
                             <table class="table table-hover table-bordered">
                                 <tr>
@@ -466,7 +466,7 @@ $timestamp = date("Y-m-d H:i:s");
                             <form role="form" action="" method="post" class="">
                                 <table class="table">
                                     <tr>
-                                        <th>No. Proceso</th>
+
                                         <th>Area</th>
                                         <th>Registrado Por</th>
                                         <th>Hora de Registro</th>

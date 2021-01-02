@@ -66,7 +66,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar.</button>
-              <button type="button" class="btn btn-primary " onclick="RegresarACasa()">Entiendo.</button>
+              <button type="button" class="btn btn-primary " onclick="RegistroInicioGPS()">Entiendo.</button>
             </div>
           </div>
         </div>
@@ -94,11 +94,11 @@
               </button>
             </div>
             <div class="modal-body">
-              Se Finalizo el Tracking correctamente, se asocia este punto como el punto de entrega de la Guia de Carga.
+              Se Finalizo el Tracking correctamente, se asocia este punto como el punto de entrega de la Guía de Carga.
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar.</button>
-              <button type="button" class="btn btn-primary" onclick="RegresarACasa()">Entiendo.</button>
+              <button type="button" class="btn btn-primary" onclick="RegistroFinalGPS()">Entiendo.</button>
             </div>
           </div>
         </div>
@@ -152,14 +152,12 @@
         trafficLayer.setMap(map);
       }
 
-      
-
 
       function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         infoWindow.setPosition(pos);
         infoWindow.setContent(browserHasGeolocation ?
-                              'Error: The Geolocation service failed.' :
-                              'Error: Your browser doesn\'t support geolocation.');
+                              'Error: No se pudo Establecer donde esta usted en TrackerMole.' :
+                              'Error: El navegadro no soporta GPS.');
         infoWindow.open(map);
         
       }
@@ -170,9 +168,9 @@
 {
    var lat = position.coords.latitude;
    var lon= position.coords.longitude;
-   if (watch != null ) 
- /*Need to take care .. as maybe there is no gps and user 
-  want it off so keep attempt 3 times or some kind a way out otherwise it will 
+   if (watch != null )
+ /*Need to take care .. as maybe there is no gps and user
+  want it off so keep attempt 3 times or some kind a way out otherwise it will
   infinite loop */
     {
         navigator.geolocation.clearWatch(watch);
@@ -183,20 +181,20 @@
 function getLatLon()
 {
     var geolocOK = ("geolocation" in navigator);
-    if ( geolocOK ) 
+    if ( geolocOK )
     {
         var option = {enableHighAccuracy:true, maximumAge: 0,timeout:10000 };
         watch =  navigator.geolocation.watchPosition(success, fails,  option);
     }
     else {
-        //disable the current location?  
+        //disable the current location?
     }
 }
 function fails()
 {
     alert("Encienda el GPS del dispositivo!");
 }
-getLatLon(); 
+getLatLon();
 </script>
 
 
@@ -204,9 +202,9 @@ getLatLon();
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMS9Z53e5o37lHssInOqrhm3I87WpYxZg&callback=initMap">
     </script>
-  
 
-  <script src="js/jquery-2.1.0.js"></script>
+
+   <script src="js/jquery-2.1.0.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/common-script.js"></script>
     <script src="js/jquery.slimscroll.min.js"></script>
@@ -216,7 +214,6 @@ getLatLon();
     <script src="js/edit-graph.js"></script>
     <script src="plugins/kalendar/kalendar.js" type="text/javascript"></script>
     <script src="plugins/kalendar/edit-kalendar.js" type="text/javascript"></script>
-
     <script src="plugins/sparkline/jquery.sparkline.js" type="text/javascript"></script>
     <script src="plugins/sparkline/jquery.customSelect.min.js"></script>
     <script src="plugins/sparkline/sparkline-chart.js"></script>
@@ -224,27 +221,98 @@ getLatLon();
     <script src="plugins/morris/morris.min.js" type="text/javascript"></script>
     <script src="plugins/morris/raphael-min.js" type="text/javascript"></script>
     <script src="plugins/morris/morris-script.js"></script>
-
-
-    <script>
-function RegresarACasa()
-{
-     location.href = "http://localhost/Projects/MoleTracker/TrackerGuiaActiva.php";
-} 
-</script>
-
-
     <script src="plugins/demo-slider/demo-slider.js"></script>
     <script src="plugins/knob/jquery.knob.min.js"></script>
-
-
-
-
     <script src="js/jPushMenu.js"></script>
     <script src="js/side-chats.js"></script>
     <script src="js/jquery.slimscroll.min.js"></script>
     <script src="plugins/scroll/jquery.nanoscroller.js"></script>
+    <script>
 
+    function RegistroInicioGPS(){
+        //capa para mostrar las coordenadas (definida tambien en el HTML)
+        var errorjs=document.getElementById('errorjs');
+        //verificamos si el navegador soporta Geolocation API de HTML5
+        if(navigator.geolocation){
+            //intentamos obtener las coordenadas del usuario
+            navigator.geolocation.getCurrentPosition(function(objPosicion){
+                //almacenamos en variables la longitud y latitud
+                var iLongitud=objPosicion.coords.longitude, iLatitud=objPosicion.coords.latitude;
+                alert(iLongitud+" "+iLatitud);
+                location.href="http://localhost:63342/MoleTracker/RegistroInicioGPS.php?long="+iLongitud+"&lat="+iLatitud+"";
+
+            },function(objError){
+                //manejamos los errores devueltos por Geolocation API
+                switch(objError.code){
+                    //no se pudo obtener la informacion de la ubicacion
+                    case objError.POSITION_UNAVAILABLE:
+                        errorjs.innerHTML='La información de tu posición no es posible';
+                        break;
+                    //timeout al intentar obtener las coordenadas
+                    case objError.TIMEOUT:
+                        errorjs.innerHTML="Tiempo de espera agotado";
+                        break;
+                    //el usuario no desea mostrar la ubicacion
+                    case objError.PERMISSION_DENIED:
+                        errorjs.innerHTML='Necesitas permitir tu localización';
+                        break;
+                    //errores desconocidos
+                    case objError.UNKNOWN_ERROR:
+                        errorjs.innerHTML='Error desconocido';
+                        break;
+                }
+            });
+        }else{
+            //el navegador del usuario no soporta el API de Geolocalizacion de HTML5
+            errorjs.innerHTML='Tu navegador no soporta la Geolocalización en HTML5';
+        }
+    };
+
+</script>
+
+
+<script>
+
+    function RegistroFinalGPS(){
+        //capa para mostrar las coordenadas (definida tambien en el HTML)
+        var errorjs=document.getElementById('errorjs');
+        //verificamos si el navegador soporta Geolocation API de HTML5
+        if(navigator.geolocation){
+            //intentamos obtener las coordenadas del usuario
+            navigator.geolocation.getCurrentPosition(function(objPosicion){
+                //almacenamos en variables la longitud y latitud
+                var iLongitud=objPosicion.coords.longitude, iLatitud=objPosicion.coords.latitude;
+                alert(iLongitud+" "+iLatitud);
+                location.href="http://localhost:63342/MoleTracker/RegistroFinalGPS.php?long="+iLongitud+"&lat="+iLatitud+"";
+
+            },function(objError){
+                //manejamos los errores devueltos por Geolocation API
+                switch(objError.code){
+                    //no se pudo obtener la informacion de la ubicacion
+                    case objError.POSITION_UNAVAILABLE:
+                        errorjs.innerHTML='La información de tu posición no es posible';
+                        break;
+                    //timeout al intentar obtener las coordenadas
+                    case objError.TIMEOUT:
+                        errorjs.innerHTML="Tiempo de espera agotado";
+                        break;
+                    //el usuario no desea mostrar la ubicacion
+                    case objError.PERMISSION_DENIED:
+                        errorjs.innerHTML='Necesitas permitir tu localización';
+                        break;
+                    //errores desconocidos
+                    case objError.UNKNOWN_ERROR:
+                        errorjs.innerHTML='Error desconocido';
+                        break;
+                }
+            });
+        }else{
+            //el navegador del usuario no soporta el API de Geolocalizacion de HTML5
+            errorjs.innerHTML='Tu navegador no soporta la Geolocalización en HTML5';
+        }
+    };
+
+</script>
 
 </body>
 </html>

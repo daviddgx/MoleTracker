@@ -166,7 +166,7 @@ if ($_SESSION['Usuario'] == '') {
                 <!-- Inicia la barra de Tutulo en right -->
                 <div class="pull-left breadcrumb_admin clear_both">
                     <div class="pull-left page_title theme_color">
-                        <h1>Administrador de Guias de Carga</h1>
+                        <h1>Administrador de Guías de Carga</h1>
                         <h2 class="">Panel de Configuración...</h2>
                     </div>
                     <div class="pull-right">
@@ -281,7 +281,7 @@ if ($_SESSION['Usuario'] == '') {
                             <div class="information red_info">
                                 <div class="information_inner">
                                     <div class="info red_symbols"><i class="fa  fa-files-o icon"></i></div>
-                                    <span>Guias Entregadas</span>
+                                    <span>Guías Entregadas</span>
                                     <!-- Consulta de Votos y muestra el valor -->
 
                                     <?php
@@ -319,7 +319,7 @@ if ($_SESSION['Usuario'] == '') {
                             <div class="information gray_info">
                                 <div class="information_inner">
                                     <div class="info gray_symbols"><i class="fa  fa-file icon"></i></div>
-                                    <span> Guias en Transito </span>
+                                    <span> Guías en Tránsito </span>
                                     <!-- //conteo de candidoas totales para mostra -->
 
                                     <?php

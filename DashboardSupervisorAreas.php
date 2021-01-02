@@ -41,8 +41,10 @@ if(!empty($_POST['Validar'])){
 1. Validar si el RFID Existe y si es Operador de distribucion
 2. Validar si tiene Guias Activas
 2.1 Obtener la guia Activa
+2.2 Validar que ya tenga una validacion realizada
 3. Registrar la validacion y el paso por el area
     */
+
 
         $QRYUsuario = "select Roll_Usuario,
         case 
@@ -59,16 +61,16 @@ if(!empty($_POST['Validar'])){
                 if ($rowPiloto['Valor']) {
 
                     //Obtener Guia Activa
-                    $QryGuiaActiva = "select * from traker_mole.trck_mle_guias where RFID = '" . $RFIDRegistro . "' and Estatus = 'Iniciada' || Estatus = 'Carga' || Estatus = 'Verificado' ";
+                    $QryGuiaActiva = "select * from traker_mole.trck_mle_guias where RFID = '" . $RFIDRegistro . "' and Estatus in ('Iniciada','Carga','Verificado')  and verificador is null";
                     $GuiaActivada = $conn->query($QryGuiaActiva);
                     $Lineas = $GuiaActivada->num_rows;
                     $rowGuaActiva = $GuiaActivada->fetch_assoc();
 
                     if ($Lineas <= 0) {
-                        $error = '<div class="alert alert-danger" role="alert"><p><strong>El piloto no tiene ninguna Guía Activa</div>';
+                        $error = '<div class="alert alert-danger" role="alert"><p><strong>El piloto no tiene ningúna Guía Activa ó ya se registó en esta área</div>';
                     } else {
                         //Obtener Guia y Actualizar Estatus
-                        $ActualizarGuiaProceso = "insert into traker_mole.trck_mle_reg_guias values (0,'" . $rowGuaActiva['GuiaSAP'] . "','" . $RFIDRegistro . "','" . $rowGuaActiva['Piloto'] . "','" . $_SESSION["Area"] . "','" . $_SESSION['Usuario'] . "','" . $_SESSION["FechaTrabajo"] . " " . $_SESSION["HoraTrabajo"] . "',0,0, '" . $Accion . "' )";
+                        $ActualizarGuiaProceso = "insert into traker_mole.trck_mle_reg_guias values (0,'" . $rowGuaActiva['GuiaSAP'] . "','" . $RFIDRegistro . "','" . $rowGuaActiva['Piloto'] . "','" . $_SESSION["Area"] . "','" . $_SESSION['Usuario'] . "','" . $_SESSION["FechaTrabajo"] . " " . $_SESSION["HoraTrabajo"] . "',0,0, 'Validar Marchamo' )";
 
                         if ($conn->query($ActualizarGuiaProceso) === TRUE) {
 
@@ -91,7 +93,7 @@ if(!empty($_POST['Validar'])){
 
                                     }
 
-                                    $ActualizarGuia = "update traker_mole.trck_mle_guias set Estatus = 'Verificado', Verificador = ' ".$VerificacionGuia." 'where GuiaSAP = '" . $rowGuaActiva['GuiaSAP'] . "' ";
+                                    $ActualizarGuia = "update traker_mole.trck_mle_guias set Estatus = 'Verificado', Verificador = '".$VerificacionGuia."'where GuiaSAP = '" . $rowGuaActiva['GuiaSAP'] . "' ";
                                     if ($conn->query($ActualizarGuia) === TRUE) {
                                         // Validar Semaforo
 
@@ -168,7 +170,7 @@ if (!empty($_POST['Registrar'])) {
                     $rowGuaActiva = $GuiaActivada->fetch_assoc();
 
                     if ($Lineas <= 0) {
-                        $error = '<div class="alert alert-danger" role="alert"><p><strong>El piloto no tiene ninguna Guía Activa</div>';
+                        $error = '<div class="alert alert-danger" role="alert"><p><strong>El piloto no tiene ningúna Guía Activa</div>';
                     } else {
                         //Obtener Guia y Actualizar Estatus
                         $ActualizarGuiaProceso = "insert into traker_mole.trck_mle_reg_guias values (0,'" . $rowGuaActiva['GuiaSAP'] . "','" . $RFIDRegistro . "','" . $rowGuaActiva['Piloto'] . "','" . $_SESSION["Area"] . "','" . $_SESSION['Usuario'] . "','" . $_SESSION["FechaTrabajo"] . " " . $_SESSION["HoraTrabajo"] . "',0,0, '" . $Accion . "' )";

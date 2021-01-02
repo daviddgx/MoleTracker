@@ -251,7 +251,7 @@ if (!empty($_POST['Programar'])) {
                     <div class="container">
                     <div class="row">
                             <div class="col-sm-6 offset-3 myform-all">
-                            <h1 ><strong>Programación</strong> Guias de Carga</h1>
+                            <h1 ><strong>Programación</strong> Guías de Carga</h1>
                                 
                             </div>
                             
@@ -275,7 +275,7 @@ if (!empty($_POST['Programar'])) {
                                     <form role="form" action="" method="post" class="">
                                         <!-- Componente de Formulario -->
                                             <div class="form-grup">
-                                                <input type="text" name="form-GUIASAP" placeholder="No Guia SAP..." class=" form-control" id="form-GUIASAP">
+                                                <input type="text" name="form-GUIASAP" placeholder="No Guía SAP..." class=" form-control" id="form-GUIASAP">
                                             </div>
                                         <!-- Fin Componente de Formulario -->
                                         <div class="saltito"><h1></h1></div>

@@ -192,7 +192,7 @@ include 'LQS_EUQ/GuiasTraker.php';
             <!-- Inicia la barra de Tutulo en right -->
             <div class="pull-left breadcrumb_admin clear_both">
                 <div class="pull-left page_title theme_color">
-                    <h1>Administrador de Guias de Carga</h1>
+                    <h1>Administrador de Guías de Carga</h1>
                     <h2 class="">Panel de Administración...</h2>
                 </div>
                 <div class="pull-right">
@@ -268,7 +268,7 @@ include 'LQS_EUQ/GuiasTraker.php';
                                         <button class="fa fa-binoculars btn btn-info my-2 my-sm-0" type="button"
                                                 style="margin-right: 10px;" onclick="CargardetallesGuia()"> Visualizar
                                             Todas
-                                            las Guias
+                                            las Guías
                                         </button>
                                     </div>
                                     <div>
@@ -292,13 +292,13 @@ include 'LQS_EUQ/GuiasTraker.php';
                             <div class="myform-all Color_Claro">
                                 <!-- Inicia Tabla de Usuarios; -->
                                 <br>
-                                <h1 class="Titulos">Administración de Guias Entregadas</h1>
+                                <h1 class="Titulos">Administración de Guías Entregadas</h1>
                                 <form role="form" action="" method="post" class="">
                                     <table id="example" class="table table-striped  " cellspacing="0" width="100%">
                                         <thead>
 
 
-                                        <th>No. Guia SAP</th>
+                                        <th>No. Guía SAP</th>
                                         <th>Piloto</th>
                                         <th>Placa del Camion</th>
                                         <th>Capacidad de Carga</th>

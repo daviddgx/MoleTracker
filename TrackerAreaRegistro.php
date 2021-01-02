@@ -16,7 +16,7 @@ $timestamp = date("Y-m-d H:i:s");
 
 
 if (!empty($_POST['Registrar'])) {
-    $RFIDRegistro = $_POST['RFIDLog'];
+
 
 
     // Creamos la conexion
@@ -35,170 +35,27 @@ registrar duplipados
 4. insertar el registro en la tabla traker_mole.trck_mle_reg_guias
 */
 
+$Nombre = $_POST['form-Nombre'];
+$Apellido = $_POST['form-Apellido'];
+$ID = $_POST['form-DPI'];
+$Placa = $_POST['form-Placa'];
+$Accion = $_POST['form-Accion'];
+
+$Visita = $_POST['form-TipoVisita'];
+$Comentarios = $_POST['form-Comentarios'];
 
 
-        // QRY AreaUsuario
-        $QRYAreaUsuario = "SELECT T_Usuario,concat_ws(' ',nombre,apellido) as Quien FROM traker_mole.trkml_usuarios where RFID = '" . $RFIDRegistro . "';";
+        //Insertar el registro en la tabla de externos
+        $QRYInsertarVisita ="insert into traker_mole.trck_mle_reg_externos values ('".$Nombre."','".$Apellido."','".$ID."','".$Placa."','".$Visita."','".$Comentarios."','".$_SESSION['Area']."','".$fecha."',(SELECT DATE_FORMAT(NOW( ), \"%H:%i:%S\" )),'".$Accion."');";
 
-        $AreaUsuario;
-        $resultAreaUsuario = $conn->query($QRYAreaUsuario);
+        if ($conn->query($QRYInsertarVisita) === TRUE) {
+            $mensajeExito = '<div class="alert alert-success" role="alert">El registro fue agregado correctamente</div>';
+        } else {
 
-
-        try {
-            if ($resultAreaUsuario->num_rows > 0) {
-                while ($rowdato = $resultAreaUsuario->fetch_assoc()) {
-                    $AreaUsuario =  $rowdato["T_Usuario"];
-                    //echo $AreaUsuario;
-                    //Aqui van los Ifs para saber de que area son y hace el incert segun el Area.
-
-                    if ($AreaUsuario == 'Supervisor Garita Colmenta') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    } else if ($AreaUsuario == 'Supervisor Garita Fabrica') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    } else if ($AreaUsuario == 'Supervisor de Andenes de Carga') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    } else if ($AreaUsuario == 'Validador de Marchamos') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    } else if ($AreaUsuario == 'Tracker') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    } else if ($AreaUsuario == 'Administrador de Guias') {
-                        $sql = "INSERT INTO `traker_mole`.`trck_mle_reg_guias` (`GuiaSap`,`Area`,`Registrador`,`HoraRegistro`,`bandera`,`Estatus`) VALUES('" . $_SESSION['GuiaSAPActiva'] . "','" . $AreaUsuario . "','" . $rowdato["Quien"] . "','" . $timestamp . "','0','0');";
-                        //INSERT INTO `traker_mole`.`trck_mle_guias` (`Piloto`, `DPI_Piloto`, `Placa_Camion`, `Camion_Capacidad`, `Rampa`, `Destino`, `Fecha_Carga`, `Fecha_Entrega`, `PesoBruto`, `RFID`, `Estatus`) VALUES ('2', '2', '2', '2', '2', '2', '2', '2', '2', '2', '2');
-
-                        if ($conn->query($sql) === TRUE) {
-
-                            //$mensajeExito = '<div class="alert alert-success" role="alert">Registrado en Garita Correctamente.</div>';
-                        } else {
-
-                            echo "Error: " . $sql . "<br>" . $conn->error;
-                            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos </div>';
-                        }
-                    }
-
-                    //Segun el Area hay que insertar con lo siguente
-
-                    // QRY BanderaGuia
-                    $QRYBanderaUsuario = "";
-                    $BanderaGuia;
-                    //No existe = insertar con estatus 0
-                    //estatus 0 insertar con estatus 1 u actualizar entrada a 1 
-                    // si el estatus es 1 no dejar insertar
-
-
-                }
-            } else {
-                $error = '<div class="alert alert-danger" role="alert"><p><strong>El RFID no esta registrado como supervisor de Area</div>';
-            }
-        } catch (Exception $ex) {
+            $error = '<div class="alert alert-danger" role="alert"><p><strong>No se guardaron los datos, valide e intente de nuevo </div>';
         }
 
 
-
-
-
-
-
-
-        /* inicia codigo de referencia
-            // Obtencion de datos
-        $LClave = md5($LClave);
-            //echo $LUser;
-            //echo $LClave;
-        $sql = "SELECT RFID,Pass,T_Usuario,Usuario FROM trkml_usuarios where RFID = '$LUser' AND Pass = '$LClave'";
-
-        $result = $conn->query($sql);
-            // Fin Obtencion de datos
-
-        try {
-            if ($result->num_rows > 0) {
-                
-                    //Salida de datos del query
-                while ($row = $result->fetch_assoc()) {
-                    if ($row["T_Usuario"] === 'Administrador de Guias') {
-                        
-                        $_SESSION['Usuario'] = $row["Usuario"];
-                                //echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"]."Usuario: ".$row["Usuario"];
-                        header("Location: DashboardAdministradorGuias.php");
-                    } else if ($row["T_Usuario"] === 'Area Generica ') {
-                        
-                        $_SESSION['Usuario'] = $row["Usuario"];
-                                // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header("Location: DashboardAreaGenerica.php");
-                    } else if ($row["T_Usuario"] === 'Traker') {
-                        
-                        $_SESSION['Usuario'] = $row["Usuario"];
-                                // echo "Usuario: ".$row["RFID"]."Clave: ".$row["Pass"];
-                        header("Location: DashboardTraker.php");
-                    }
-
-                }
-            } else {
-                $error = '<div class="alert alert-danger" role="alert"><p><strong>Sus datos son incorrectos!!</div>';
-                       // $row = $result->fetch_assoc();
-
-            }
-        } catch (Exception $ex) {
-
-
-        }fin Codigo de referencia */
-
-
-
-        //comprovacion de dadtos
-
-
-
-        //fin comprovacion de datos
     }
 
     // Fin de la conexion
@@ -558,7 +415,8 @@ registrar duplipados
                                     <th>Placa</th>
                                     <th>Motivo</th>
                                     <th>Hora</th>
-                                    <th>Acción</th>
+                                    <th>Fecha</th>
+
                                 <thead>
                                 <tbody>
                                     <?php
@@ -574,21 +432,25 @@ registrar duplipados
                                         echo "</td>";
 
                                         echo "<td>";
-                                        echo $listaRegistros['id'];
+                                        echo $listaRegistros['Id'];
                                         echo "</td>";
 
                                         echo "<td>";
                                         echo $listaRegistros['Placa'];
                                         echo "</td>";
+
                                         echo "<td>";
                                         echo $listaRegistros['Motivo'];
                                         echo "</td>";
+
                                         echo "<td>";
                                         echo $listaRegistros['Hora'];
                                         echo "</td>";
+
                                         echo "<td>";
-                                        echo $listaRegistros['Accion'];
+                                        echo $listaRegistros['Fecha'];
                                         echo "</td>";
+                                        
                                         echo "</tr>";
                                         $listaRegistros = $ejecutar_sentenciaRegistrosExternos->fetch(PDO::FETCH_ASSOC);
                                     }
